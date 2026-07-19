@@ -9,14 +9,15 @@ import { TypeBadge } from "@/components/TypeBadge";
 export function generateStaticParams() {
   return seedCombos.slice(0, 15).map((c) => {
     const [a, b] = c.parentA < c.parentB ? [c.parentA, c.parentB] : [c.parentB, c.parentA];
-    return { a, b };
+    return { pair: `${a}-${b}` };
   });
 }
 
-interface Props { params: Promise<{ a: string; b: string }>; }
+interface Props { params: Promise<{ pair: string }>; }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { a, b } = await params;
+  const { pair } = await params;
+  const [a, b] = pair.split("-");
   const pa = findPal(seedPals, a);
   const pb = findPal(seedPals, b);
   const child = findCombo(seedCombos, a, b)?.child;
@@ -29,7 +30,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function ComboPage({ params }: Props) {
-  const { a, b } = await params;
+  const { pair } = await params;
+  const [a, b] = pair.split("-");
+  if (!a || !b) return notFound();
   const combo = findCombo(seedCombos, a, b);
   if (!combo) return notFound();
   const pa = findPal(seedPals, combo.parentA);

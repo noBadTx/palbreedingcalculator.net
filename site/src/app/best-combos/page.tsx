@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { seedPals, seedCombos } from "@/lib/seed";
-import { findPal } from "@/lib/data";
+import { findPal, sortedPair } from "@/lib/data";
 import { PalAvatar } from "@/components/PalAvatar";
 
 export const metadata: Metadata = {
@@ -23,7 +23,7 @@ export default function BestCombosPage() {
             const pa = findPal(seedPals, c.parentA)!;
             const pb = findPal(seedPals, c.parentB)!;
             const child = findPal(seedPals, c.child)!;
-            const [a, b] = c.parentA < c.parentB ? [c.parentA, c.parentB] : [c.parentB, c.parentA];
+            const [a, b] = sortedPair(c.parentA, c.parentB);
             return (
               <Link key={`${a}-${b}`} href={`/combo/${a}-${b}/`} className="card" style={{ textDecoration: "none" }}>
                 <div className="flex items-center gap-4">
