@@ -1,5 +1,20 @@
-node_modules/
-.wrangler/
-.env
-dist/
-.next/
+# Root design/compliance assets - not for source control
+/compliance/
+/design/
+/generate-stitch.js
+/generate-stitch-p0.js
+/generate-stitch-p1.js
+/package.json
+/package-lock.json
+
+# Site dependencies
+/site/node_modules/
+/site/.next/
+/site/.vercel/
+/site/.env
+/site/.env.local
+/site/dist/
+
+# System
+.DS_Store
+*.log
