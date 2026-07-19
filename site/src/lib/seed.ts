@@ -1,0 +1,42 @@
+import { Pal, Combo } from "./types";
+
+export const seedPals: Pal[] = [
+  {"id":"lamball","name":"Lamball","combiRank":1,"types":["Neutral"],"workSuitability":{"handiwork":1,"transporting":1,"farming":1},"passives":["lucky"],"drops":["wool","leather"],"isUnique":false},
+  {"id":"chikipi","name":"Chikipi","combiRank":2,"types":["Neutral"],"workSuitability":{"gathering":1,"farming":2},"passives":["docile"],"drops":["egg","leather"],"isUnique":false},
+  {"id":"pengullet","name":"Pengullet","combiRank":5,"types":["Ice","Water"],"workSuitability":{"handiwork":1,"transporting":1,"watering":1,"cooling":1},"passives":["jolly"],"drops":["ice_organ","pal_fluid"],"isUnique":false},
+  {"id":"sparkit","name":"Sparkit","combiRank":8,"types":["Electric"],"workSuitability":{"handiwork":1,"generatingElectricity":1,"transporting":1},"passives":["energetic"],"drops":["electric_organ"],"isUnique":false},
+  {"id":"flambelle","name":"Flambelle","combiRank":10,"types":["Fire"],"workSuitability":{"kindling":1,"farming":1,"handiwork":1},"passives":["warm_body"],"drops":["flame_organ"],"isUnique":false},
+  {"id":"fuack","name":"Fuack","combiRank":15,"types":["Water"],"workSuitability":{"watering":1,"handiwork":1,"transporting":1},"passives":["misty"],"drops":["pal_fluid"],"isUnique":false},
+  {"id":"arbee","name":"Arbee","combiRank":20,"types":["Grass"],"workSuitability":{"planting":1,"handiwork":1,"farming":1},"passives":["hard_worker"],"drops":["honey"],"isUnique":false},
+  {"id":"depacco","name":"Depacco","combiRank":25,"types":["Ground"],"workSuitability":{"mining":1,"transporting":1},"passives":["strong"],"drops":["bone"],"isUnique":false},
+  {"id":"hoocrates","name":"Hoocrates","combiRank":30,"types":["Dark"],"workSuitability":{"gathering":1,"transporting":1},"passives":["nocturnal"],"drops":["fiber"],"isUnique":false},
+  {"id":"jolthog","name":"Jolthog","combiRank":35,"types":["Electric"],"workSuitability":{"generatingElectricity":1,"transporting":1},"passives":["electrified"],"drops":["electric_organ"],"isUnique":false},
+  {"id":"mossanda","name":"Mossanda","combiRank":100,"types":["Grass"],"workSuitability":{"planting":2,"handiwork":2,"transporting":3,"farming":1},"passives":["lucky"],"drops":["mushroom","leather"],"isUnique":false},
+  {"id":"relaxaurus","name":"Relaxaurus","combiRank":140,"types":["Water","Dragon"],"workSuitability":{"watering":2,"transporting":1,"handiwork":1},"passives":["serious"],"drops":["pal_fluid"],"isUnique":false},
+  {"id":"anubis","name":"Anubis","combiRank":520,"types":["Ground"],"workSuitability":{"mining":3,"handiwork":3,"transporting":2},"passives":["legend","serious"],"drops":["bone","leather"],"isUnique":true},
+  {"id":"relaxaurus-lux","name":"Relaxaurus Lux","combiRank":1420,"types":["Water","Electric"],"workSuitability":{"handiwork":2,"transporting":3,"generatingElectricity":3,"watering":3},"passives":["lucky","legend","serious"],"drops":["pal_fluid","electric_organ"],"isUnique":true},
+  {"id":"jetragon","name":"Jetragon","combiRank":1500,"types":["Dragon"],"workSuitability":{"gathering":4,"transporting":5,"mining":1},"passives":["legend","swift"],"drops":["gold_coin"],"isUnique":true},
+  {"id":"frostallion","name":"Frostallion","combiRank":1480,"types":["Ice"],"workSuitability":{"cooling":4,"transporting":3,"gathering":2},"passives":["legend","ice_emperor"],"drops":["ice_organ","diamond"],"isUnique":true},
+  {"id":"paladius","name":"Paladius","combiRank":1460,"types":["Neutral"],"workSuitability":{"mining":2,"transporting":3,"handiwork":2},"passives":["legend","holy_blade"],"drops":["pal_circuit"],"isUnique":true},
+  {"id":"necromus","name":"Necromus","combiRank":1470,"types":["Dark"],"workSuitability":{"mining":2,"transporting":3,"handiwork":2},"passives":["legend","dark_lord"],"drops":["pal_circuit"],"isUnique":true},
+  {"id":"blazamut","name":"Blazamut","combiRank":1450,"types":["Fire"],"workSuitability":{"kindling":4,"mining":3,"handiwork":2},"passives":["legend","flame_emperor"],"drops":["flame_organ","gold_coin"],"isUnique":true},
+  {"id":"lyleen","name":"Lyleen","combiRank":1100,"types":["Grass"],"workSuitability":{"planting":4,"handiwork":2,"farming":3,"medicine":2},"passives":["serious","vegetarian"],"drops":["low-grade_medical_supplies","beautiful_flowers"],"isUnique":true}
+];
+
+export const seedCombos: Combo[] = [
+  {"parentA":"lamball","parentB":"chikipi","child":"lamball","override":false},
+  {"parentA":"lamball","parentB":"pengullet","child":"chikipi","override":false},
+  {"parentA":"lamball","parentB":"sparkit","child":"chikipi","override":false},
+  {"parentA":"relaxaurus","parentB":"sparkit","child":"relaxaurus-lux","override":true},
+  {"parentA":"mossanda","parentB":"pengullet","child":"anubis","override":true},
+  {"parentA":"frostallion","parentB":"frostallion","child":"frostallion","override":true},
+  {"parentA":"jetragon","parentB":"jetragon","child":"jetragon","override":true},
+  {"parentA":"lamball","parentB":"flambelle","child":"lamball","override":false},
+  {"parentA":"pengullet","parentB":"sparkit","child":"pengullet","override":false},
+  {"parentA":"flambelle","parentB":"fuack","child":"fuack","override":false},
+  {"parentA":"arbee","parentB":"depacco","child":"depacco","override":false},
+  {"parentA":"hoocrates","parentB":"jolthog","child":"jolthog","override":false},
+  {"parentA":"mossanda","parentB":"relaxaurus","child":"relaxaurus","override":false},
+  {"parentA":"anubis","parentB":"jetragon","child":"jetragon","override":false},
+  {"parentA":"frostallion","parentB":"blazamut","child":"blazamut","override":false}
+];

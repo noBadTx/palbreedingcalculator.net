@@ -1,0 +1,1264 @@
+{
+  "combos": [
+    {
+      "parentA": "lamball",
+      "parentB": "lamball",
+      "child": "lamball",
+      "override": false
+    },
+    {
+      "parentA": "lamball",
+      "parentB": "chikipi",
+      "child": "lamball",
+      "override": false
+    },
+    {
+      "parentA": "lamball",
+      "parentB": "pengullet",
+      "child": "pengullet",
+      "override": false
+    },
+    {
+      "parentA": "lamball",
+      "parentB": "sparkit",
+      "child": "pengullet",
+      "override": false
+    },
+    {
+      "parentA": "lamball",
+      "parentB": "flambelle",
+      "child": "pengullet",
+      "override": false
+    },
+    {
+      "parentA": "lamball",
+      "parentB": "fuack",
+      "child": "sparkit",
+      "override": false
+    },
+    {
+      "parentA": "lamball",
+      "parentB": "arbee",
+      "child": "flambelle",
+      "override": false
+    },
+    {
+      "parentA": "lamball",
+      "parentB": "depacco",
+      "child": "fuack",
+      "override": false
+    },
+    {
+      "parentA": "lamball",
+      "parentB": "hoocrates",
+      "child": "fuack",
+      "override": false
+    },
+    {
+      "parentA": "lamball",
+      "parentB": "jolthog",
+      "child": "arbee",
+      "override": false
+    },
+    {
+      "parentA": "lamball",
+      "parentB": "mossanda",
+      "child": "mossanda",
+      "override": false
+    },
+    {
+      "parentA": "lamball",
+      "parentB": "relaxaurus",
+      "child": "mossanda",
+      "override": false
+    },
+    {
+      "parentA": "lamball",
+      "parentB": "anubis",
+      "child": "anubis",
+      "override": false
+    },
+    {
+      "parentA": "lamball",
+      "parentB": "relaxaurus-lux",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "lamball",
+      "parentB": "jetragon",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "lamball",
+      "parentB": "frostallion",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "lamball",
+      "parentB": "paladius",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "lamball",
+      "parentB": "necromus",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "lamball",
+      "parentB": "blazamut",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "lamball",
+      "parentB": "lyleen",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "chikipi",
+      "parentB": "chikipi",
+      "child": "chikipi",
+      "override": false
+    },
+    {
+      "parentA": "chikipi",
+      "parentB": "pengullet",
+      "child": "pengullet",
+      "override": false
+    },
+    {
+      "parentA": "chikipi",
+      "parentB": "sparkit",
+      "child": "pengullet",
+      "override": false
+    },
+    {
+      "parentA": "chikipi",
+      "parentB": "flambelle",
+      "child": "sparkit",
+      "override": false
+    },
+    {
+      "parentA": "chikipi",
+      "parentB": "fuack",
+      "child": "sparkit",
+      "override": false
+    },
+    {
+      "parentA": "chikipi",
+      "parentB": "arbee",
+      "child": "fuack",
+      "override": false
+    },
+    {
+      "parentA": "chikipi",
+      "parentB": "depacco",
+      "child": "fuack",
+      "override": false
+    },
+    {
+      "parentA": "chikipi",
+      "parentB": "hoocrates",
+      "child": "arbee",
+      "override": false
+    },
+    {
+      "parentA": "chikipi",
+      "parentB": "jolthog",
+      "child": "arbee",
+      "override": false
+    },
+    {
+      "parentA": "chikipi",
+      "parentB": "mossanda",
+      "child": "mossanda",
+      "override": false
+    },
+    {
+      "parentA": "chikipi",
+      "parentB": "relaxaurus",
+      "child": "mossanda",
+      "override": false
+    },
+    {
+      "parentA": "chikipi",
+      "parentB": "anubis",
+      "child": "anubis",
+      "override": false
+    },
+    {
+      "parentA": "chikipi",
+      "parentB": "relaxaurus-lux",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "chikipi",
+      "parentB": "jetragon",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "chikipi",
+      "parentB": "frostallion",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "chikipi",
+      "parentB": "paladius",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "chikipi",
+      "parentB": "necromus",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "chikipi",
+      "parentB": "blazamut",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "chikipi",
+      "parentB": "lyleen",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "pengullet",
+      "parentB": "pengullet",
+      "child": "pengullet",
+      "override": false
+    },
+    {
+      "parentA": "pengullet",
+      "parentB": "sparkit",
+      "child": "sparkit",
+      "override": false
+    },
+    {
+      "parentA": "pengullet",
+      "parentB": "flambelle",
+      "child": "sparkit",
+      "override": false
+    },
+    {
+      "parentA": "pengullet",
+      "parentB": "fuack",
+      "child": "flambelle",
+      "override": false
+    },
+    {
+      "parentA": "pengullet",
+      "parentB": "arbee",
+      "child": "fuack",
+      "override": false
+    },
+    {
+      "parentA": "pengullet",
+      "parentB": "depacco",
+      "child": "fuack",
+      "override": false
+    },
+    {
+      "parentA": "pengullet",
+      "parentB": "hoocrates",
+      "child": "arbee",
+      "override": false
+    },
+    {
+      "parentA": "pengullet",
+      "parentB": "jolthog",
+      "child": "arbee",
+      "override": false
+    },
+    {
+      "parentA": "pengullet",
+      "parentB": "mossanda",
+      "child": "anubis",
+      "override": true
+    },
+    {
+      "parentA": "pengullet",
+      "parentB": "relaxaurus",
+      "child": "mossanda",
+      "override": false
+    },
+    {
+      "parentA": "pengullet",
+      "parentB": "anubis",
+      "child": "anubis",
+      "override": false
+    },
+    {
+      "parentA": "pengullet",
+      "parentB": "relaxaurus-lux",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "pengullet",
+      "parentB": "jetragon",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "pengullet",
+      "parentB": "frostallion",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "pengullet",
+      "parentB": "paladius",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "pengullet",
+      "parentB": "necromus",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "pengullet",
+      "parentB": "blazamut",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "pengullet",
+      "parentB": "lyleen",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "sparkit",
+      "parentB": "sparkit",
+      "child": "sparkit",
+      "override": false
+    },
+    {
+      "parentA": "sparkit",
+      "parentB": "flambelle",
+      "child": "flambelle",
+      "override": false
+    },
+    {
+      "parentA": "sparkit",
+      "parentB": "fuack",
+      "child": "fuack",
+      "override": false
+    },
+    {
+      "parentA": "sparkit",
+      "parentB": "arbee",
+      "child": "fuack",
+      "override": false
+    },
+    {
+      "parentA": "sparkit",
+      "parentB": "depacco",
+      "child": "arbee",
+      "override": false
+    },
+    {
+      "parentA": "sparkit",
+      "parentB": "hoocrates",
+      "child": "arbee",
+      "override": false
+    },
+    {
+      "parentA": "sparkit",
+      "parentB": "jolthog",
+      "child": "depacco",
+      "override": false
+    },
+    {
+      "parentA": "sparkit",
+      "parentB": "mossanda",
+      "child": "mossanda",
+      "override": false
+    },
+    {
+      "parentA": "sparkit",
+      "parentB": "relaxaurus",
+      "child": "relaxaurus-lux",
+      "override": true
+    },
+    {
+      "parentA": "sparkit",
+      "parentB": "anubis",
+      "child": "anubis",
+      "override": false
+    },
+    {
+      "parentA": "sparkit",
+      "parentB": "relaxaurus-lux",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "sparkit",
+      "parentB": "jetragon",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "sparkit",
+      "parentB": "frostallion",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "sparkit",
+      "parentB": "paladius",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "sparkit",
+      "parentB": "necromus",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "sparkit",
+      "parentB": "blazamut",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "sparkit",
+      "parentB": "lyleen",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "flambelle",
+      "parentB": "flambelle",
+      "child": "flambelle",
+      "override": false
+    },
+    {
+      "parentA": "flambelle",
+      "parentB": "fuack",
+      "child": "fuack",
+      "override": false
+    },
+    {
+      "parentA": "flambelle",
+      "parentB": "arbee",
+      "child": "fuack",
+      "override": false
+    },
+    {
+      "parentA": "flambelle",
+      "parentB": "depacco",
+      "child": "arbee",
+      "override": false
+    },
+    {
+      "parentA": "flambelle",
+      "parentB": "hoocrates",
+      "child": "arbee",
+      "override": false
+    },
+    {
+      "parentA": "flambelle",
+      "parentB": "jolthog",
+      "child": "depacco",
+      "override": false
+    },
+    {
+      "parentA": "flambelle",
+      "parentB": "mossanda",
+      "child": "mossanda",
+      "override": false
+    },
+    {
+      "parentA": "flambelle",
+      "parentB": "relaxaurus",
+      "child": "mossanda",
+      "override": false
+    },
+    {
+      "parentA": "flambelle",
+      "parentB": "anubis",
+      "child": "anubis",
+      "override": false
+    },
+    {
+      "parentA": "flambelle",
+      "parentB": "relaxaurus-lux",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "flambelle",
+      "parentB": "jetragon",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "flambelle",
+      "parentB": "frostallion",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "flambelle",
+      "parentB": "paladius",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "flambelle",
+      "parentB": "necromus",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "flambelle",
+      "parentB": "blazamut",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "flambelle",
+      "parentB": "lyleen",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "fuack",
+      "parentB": "fuack",
+      "child": "fuack",
+      "override": false
+    },
+    {
+      "parentA": "fuack",
+      "parentB": "arbee",
+      "child": "arbee",
+      "override": false
+    },
+    {
+      "parentA": "fuack",
+      "parentB": "depacco",
+      "child": "arbee",
+      "override": false
+    },
+    {
+      "parentA": "fuack",
+      "parentB": "hoocrates",
+      "child": "depacco",
+      "override": false
+    },
+    {
+      "parentA": "fuack",
+      "parentB": "jolthog",
+      "child": "depacco",
+      "override": false
+    },
+    {
+      "parentA": "fuack",
+      "parentB": "mossanda",
+      "child": "mossanda",
+      "override": false
+    },
+    {
+      "parentA": "fuack",
+      "parentB": "relaxaurus",
+      "child": "mossanda",
+      "override": false
+    },
+    {
+      "parentA": "fuack",
+      "parentB": "anubis",
+      "child": "anubis",
+      "override": false
+    },
+    {
+      "parentA": "fuack",
+      "parentB": "relaxaurus-lux",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "fuack",
+      "parentB": "jetragon",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "fuack",
+      "parentB": "frostallion",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "fuack",
+      "parentB": "paladius",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "fuack",
+      "parentB": "necromus",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "fuack",
+      "parentB": "blazamut",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "fuack",
+      "parentB": "lyleen",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "arbee",
+      "parentB": "arbee",
+      "child": "arbee",
+      "override": false
+    },
+    {
+      "parentA": "arbee",
+      "parentB": "depacco",
+      "child": "depacco",
+      "override": false
+    },
+    {
+      "parentA": "arbee",
+      "parentB": "hoocrates",
+      "child": "depacco",
+      "override": false
+    },
+    {
+      "parentA": "arbee",
+      "parentB": "jolthog",
+      "child": "hoocrates",
+      "override": false
+    },
+    {
+      "parentA": "arbee",
+      "parentB": "mossanda",
+      "child": "mossanda",
+      "override": false
+    },
+    {
+      "parentA": "arbee",
+      "parentB": "relaxaurus",
+      "child": "mossanda",
+      "override": false
+    },
+    {
+      "parentA": "arbee",
+      "parentB": "anubis",
+      "child": "anubis",
+      "override": false
+    },
+    {
+      "parentA": "arbee",
+      "parentB": "relaxaurus-lux",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "arbee",
+      "parentB": "jetragon",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "arbee",
+      "parentB": "frostallion",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "arbee",
+      "parentB": "paladius",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "arbee",
+      "parentB": "necromus",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "arbee",
+      "parentB": "blazamut",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "arbee",
+      "parentB": "lyleen",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "depacco",
+      "parentB": "depacco",
+      "child": "depacco",
+      "override": false
+    },
+    {
+      "parentA": "depacco",
+      "parentB": "hoocrates",
+      "child": "hoocrates",
+      "override": false
+    },
+    {
+      "parentA": "depacco",
+      "parentB": "jolthog",
+      "child": "hoocrates",
+      "override": false
+    },
+    {
+      "parentA": "depacco",
+      "parentB": "mossanda",
+      "child": "mossanda",
+      "override": false
+    },
+    {
+      "parentA": "depacco",
+      "parentB": "relaxaurus",
+      "child": "mossanda",
+      "override": false
+    },
+    {
+      "parentA": "depacco",
+      "parentB": "anubis",
+      "child": "anubis",
+      "override": false
+    },
+    {
+      "parentA": "depacco",
+      "parentB": "relaxaurus-lux",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "depacco",
+      "parentB": "jetragon",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "depacco",
+      "parentB": "frostallion",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "depacco",
+      "parentB": "paladius",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "depacco",
+      "parentB": "necromus",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "depacco",
+      "parentB": "blazamut",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "depacco",
+      "parentB": "lyleen",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "hoocrates",
+      "parentB": "hoocrates",
+      "child": "hoocrates",
+      "override": false
+    },
+    {
+      "parentA": "hoocrates",
+      "parentB": "jolthog",
+      "child": "jolthog",
+      "override": false
+    },
+    {
+      "parentA": "hoocrates",
+      "parentB": "mossanda",
+      "child": "mossanda",
+      "override": false
+    },
+    {
+      "parentA": "hoocrates",
+      "parentB": "relaxaurus",
+      "child": "mossanda",
+      "override": false
+    },
+    {
+      "parentA": "hoocrates",
+      "parentB": "anubis",
+      "child": "anubis",
+      "override": false
+    },
+    {
+      "parentA": "hoocrates",
+      "parentB": "relaxaurus-lux",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "hoocrates",
+      "parentB": "jetragon",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "hoocrates",
+      "parentB": "frostallion",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "hoocrates",
+      "parentB": "paladius",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "hoocrates",
+      "parentB": "necromus",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "hoocrates",
+      "parentB": "blazamut",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "hoocrates",
+      "parentB": "lyleen",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "jolthog",
+      "parentB": "jolthog",
+      "child": "jolthog",
+      "override": false
+    },
+    {
+      "parentA": "jolthog",
+      "parentB": "mossanda",
+      "child": "mossanda",
+      "override": false
+    },
+    {
+      "parentA": "jolthog",
+      "parentB": "relaxaurus",
+      "child": "mossanda",
+      "override": false
+    },
+    {
+      "parentA": "jolthog",
+      "parentB": "anubis",
+      "child": "anubis",
+      "override": false
+    },
+    {
+      "parentA": "jolthog",
+      "parentB": "relaxaurus-lux",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "jolthog",
+      "parentB": "jetragon",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "jolthog",
+      "parentB": "frostallion",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "jolthog",
+      "parentB": "paladius",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "jolthog",
+      "parentB": "necromus",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "jolthog",
+      "parentB": "blazamut",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "jolthog",
+      "parentB": "lyleen",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "mossanda",
+      "parentB": "mossanda",
+      "child": "mossanda",
+      "override": false
+    },
+    {
+      "parentA": "mossanda",
+      "parentB": "relaxaurus",
+      "child": "relaxaurus",
+      "override": false
+    },
+    {
+      "parentA": "mossanda",
+      "parentB": "anubis",
+      "child": "anubis",
+      "override": false
+    },
+    {
+      "parentA": "mossanda",
+      "parentB": "relaxaurus-lux",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "mossanda",
+      "parentB": "jetragon",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "mossanda",
+      "parentB": "frostallion",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "mossanda",
+      "parentB": "paladius",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "mossanda",
+      "parentB": "necromus",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "mossanda",
+      "parentB": "blazamut",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "mossanda",
+      "parentB": "lyleen",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "relaxaurus",
+      "parentB": "relaxaurus",
+      "child": "relaxaurus",
+      "override": false
+    },
+    {
+      "parentA": "relaxaurus",
+      "parentB": "anubis",
+      "child": "anubis",
+      "override": false
+    },
+    {
+      "parentA": "relaxaurus",
+      "parentB": "relaxaurus-lux",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "relaxaurus",
+      "parentB": "jetragon",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "relaxaurus",
+      "parentB": "frostallion",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "relaxaurus",
+      "parentB": "paladius",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "relaxaurus",
+      "parentB": "necromus",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "relaxaurus",
+      "parentB": "blazamut",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "relaxaurus",
+      "parentB": "lyleen",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "anubis",
+      "parentB": "anubis",
+      "child": "anubis",
+      "override": false
+    },
+    {
+      "parentA": "anubis",
+      "parentB": "relaxaurus-lux",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "anubis",
+      "parentB": "jetragon",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "anubis",
+      "parentB": "frostallion",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "anubis",
+      "parentB": "paladius",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "anubis",
+      "parentB": "necromus",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "anubis",
+      "parentB": "blazamut",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "anubis",
+      "parentB": "lyleen",
+      "child": "lyleen",
+      "override": false
+    },
+    {
+      "parentA": "relaxaurus-lux",
+      "parentB": "relaxaurus-lux",
+      "child": "relaxaurus-lux",
+      "override": false
+    },
+    {
+      "parentA": "relaxaurus-lux",
+      "parentB": "jetragon",
+      "child": "paladius",
+      "override": false
+    },
+    {
+      "parentA": "relaxaurus-lux",
+      "parentB": "frostallion",
+      "child": "blazamut",
+      "override": false
+    },
+    {
+      "parentA": "relaxaurus-lux",
+      "parentB": "paladius",
+      "child": "blazamut",
+      "override": false
+    },
+    {
+      "parentA": "relaxaurus-lux",
+      "parentB": "necromus",
+      "child": "blazamut",
+      "override": false
+    },
+    {
+      "parentA": "relaxaurus-lux",
+      "parentB": "blazamut",
+      "child": "blazamut",
+      "override": false
+    },
+    {
+      "parentA": "relaxaurus-lux",
+      "parentB": "lyleen",
+      "child": "relaxaurus-lux",
+      "override": false
+    },
+    {
+      "parentA": "jetragon",
+      "parentB": "jetragon",
+      "child": "jetragon",
+      "override": true
+    },
+    {
+      "parentA": "jetragon",
+      "parentB": "frostallion",
+      "child": "jetragon",
+      "override": false
+    },
+    {
+      "parentA": "jetragon",
+      "parentB": "paladius",
+      "child": "frostallion",
+      "override": false
+    },
+    {
+      "parentA": "jetragon",
+      "parentB": "necromus",
+      "child": "jetragon",
+      "override": false
+    },
+    {
+      "parentA": "jetragon",
+      "parentB": "blazamut",
+      "child": "frostallion",
+      "override": false
+    },
+    {
+      "parentA": "jetragon",
+      "parentB": "lyleen",
+      "child": "relaxaurus-lux",
+      "override": false
+    },
+    {
+      "parentA": "frostallion",
+      "parentB": "frostallion",
+      "child": "frostallion",
+      "override": true
+    },
+    {
+      "parentA": "frostallion",
+      "parentB": "paladius",
+      "child": "necromus",
+      "override": false
+    },
+    {
+      "parentA": "frostallion",
+      "parentB": "necromus",
+      "child": "frostallion",
+      "override": false
+    },
+    {
+      "parentA": "frostallion",
+      "parentB": "blazamut",
+      "child": "necromus",
+      "override": false
+    },
+    {
+      "parentA": "frostallion",
+      "parentB": "lyleen",
+      "child": "relaxaurus-lux",
+      "override": false
+    },
+    {
+      "parentA": "paladius",
+      "parentB": "paladius",
+      "child": "paladius",
+      "override": false
+    },
+    {
+      "parentA": "paladius",
+      "parentB": "necromus",
+      "child": "necromus",
+      "override": false
+    },
+    {
+      "parentA": "paladius",
+      "parentB": "blazamut",
+      "child": "paladius",
+      "override": false
+    },
+    {
+      "parentA": "paladius",
+      "parentB": "lyleen",
+      "child": "relaxaurus-lux",
+      "override": false
+    },
+    {
+      "parentA": "necromus",
+      "parentB": "necromus",
+      "child": "necromus",
+      "override": false
+    },
+    {
+      "parentA": "necromus",
+      "parentB": "blazamut",
+      "child": "paladius",
+      "override": false
+    },
+    {
+      "parentA": "necromus",
+      "parentB": "lyleen",
+      "child": "relaxaurus-lux",
+      "override": false
+    },
+    {
+      "parentA": "blazamut",
+      "parentB": "blazamut",
+      "child": "blazamut",
+      "override": false
+    },
+    {
+      "parentA": "blazamut",
+      "parentB": "lyleen",
+      "child": "relaxaurus-lux",
+      "override": false
+    },
+    {
+      "parentA": "lyleen",
+      "parentB": "lyleen",
+      "child": "lyleen",
+      "override": false
+    }
+  ]
+}
