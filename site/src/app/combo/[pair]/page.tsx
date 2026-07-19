@@ -1,16 +1,33 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { seedPals, seedCombos } from "@/lib/seed";
-import { findPal, findCombo } from "@/lib/data";
+import { promises as fs } from "fs";
+import path from "path";
+import { seedPals } from "@/lib/seed";
+import { findPal, findCombo, sortedPair } from "@/lib/data";
 import { PalAvatar } from "@/components/PalAvatar";
 import { TypeBadge } from "@/components/TypeBadge";
+import type { Combo } from "@/lib/types";
 
-export function generateStaticParams() {
-  return seedCombos.slice(0, 15).map((c) => {
-    const [a, b] = c.parentA < c.parentB ? [c.parentA, c.parentB] : [c.parentB, c.parentA];
-    return { pair: `${a}-${b}` };
-  });
+async function loadCombos(): Promise<Combo[]> {
+  const filePath = path.join(process.cwd(), "public", "data", "combos.json");
+  const json = await fs.readFile(filePath, "utf-8");
+  const data = JSON.parse(json);
+  return data.combos as Combo[];
+}
+
+export async function generateStaticParams() {
+  const combos = await loadCombos();
+  const seen = new Set<string>();
+  const params: { pair: string }[] = [];
+  for (const c of combos) {
+    const [a, b] = sortedPair(c.parentA, c.parentB);
+    const slug = `${a}-${b}`;
+    if (seen.has(slug)) continue;
+    seen.add(slug);
+    params.push({ pair: slug });
+  }
+  return params;
 }
 
 interface Props { params: Promise<{ pair: string }>; }
@@ -18,9 +35,10 @@ interface Props { params: Promise<{ pair: string }>; }
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { pair } = await params;
   const [a, b] = pair.split("-");
+  const combos = await loadCombos();
   const pa = findPal(seedPals, a);
   const pb = findPal(seedPals, b);
-  const child = findCombo(seedCombos, a, b)?.child;
+  const child = findCombo(combos, a, b)?.child;
   const childPal = child ? findPal(seedPals, child) : null;
   const title = `${pa?.name || a} + ${pb?.name || b} = ${childPal?.name || "?"}`;
   return {
@@ -33,7 +51,8 @@ export default async function ComboPage({ params }: Props) {
   const { pair } = await params;
   const [a, b] = pair.split("-");
   if (!a || !b) return notFound();
-  const combo = findCombo(seedCombos, a, b);
+  const combos = await loadCombos();
+  const combo = findCombo(combos, a, b);
   if (!combo) return notFound();
   const pa = findPal(seedPals, combo.parentA);
   const pb = findPal(seedPals, combo.parentB);
