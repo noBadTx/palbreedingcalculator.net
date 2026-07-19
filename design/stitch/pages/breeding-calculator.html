@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PalBreed | Forward Breeding Calculator</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .hud-corner {
+            position: relative;
+        }
+        .hud-corner::before, .hud-corner::after {
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-color: rgba(245, 166, 35, 0.4);
+            border-style: solid;
+            pointer-events: none;
+        }
+        .hud-corner-tl::before { top: -1px; left: -1px; border-width: 1px 0 0 1px; }
+        .hud-corner-tr::after { top: -1px; right: -1px; border-width: 1px 1px 0 0; }
+        .hud-corner-bl::before { bottom: -1px; left: -1px; border-width: 0 0 1px 1px; }
+        .hud-corner-br::after { bottom: -1px; right: -1px; border-width: 0 1px 1px 0; }
+        
+        .scanline-overlay {
+            background: linear-gradient(to bottom, transparent 50%, rgba(11, 15, 18, 0.1) 50%);
+            background-size: 100% 4px;
+            pointer-events: none;
+        }
+        .grid-bg {
+            background-image: linear-gradient(rgba(138, 148, 153, 0.05) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(138, 148, 153, 0.05) 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary-fixed-dim": "#ffb955",
+                      "on-surface": "#eee0d2",
+                      "secondary-fixed-dim": "#5dd9d0",
+                      "on-secondary-fixed": "#00201e",
+                      "surface-container-high": "#302920",
+                      "surface-container": "#251e16",
+                      "secondary": "#4ECDC4",
+                      "on-error-container": "#ffdad6",
+                      "on-secondary": "#003734",
+                      "outline-variant": "#524534",
+                      "on-error": "#690005",
+                      "surface-variant": "#3c332a",
+                      "surface-container-highest": "#3c332a",
+                      "primary": "#ffc880",
+                      "on-tertiary-fixed-variant": "#8e1300",
+                      "tertiary-fixed-dim": "#ffb4a5",
+                      "error": "#ffb4ab",
+                      "primary-container": "#f5a623",
+                      "tertiary-fixed": "#ffdad3",
+                      "surface-bright": "#40382e",
+                      "surface-dim": "#19120a",
+                      "surface-container-low": "#211a12",
+                      "on-primary-container": "#644000",
+                      "on-primary": "#452b00",
+                      "inverse-on-surface": "#372f26",
+                      "tertiary-container": "#ff9c88",
+                      "surface": "#0B0F12",
+                      "secondary-fixed": "#7cf6ec",
+                      "on-background": "#eee0d2",
+                      "primary-fixed": "#ffddb4",
+                      "on-primary-fixed": "#291800",
+                      "on-secondary-container": "#00302d",
+                      "error-container": "#93000a",
+                      "secondary-container": "#00a29a",
+                      "outline": "#9f8e7a",
+                      "inverse-primary": "#835500",
+                      "surface-tint": "#ffb955",
+                      "tertiary": "#ffc4b8",
+                      "surface-container-lowest": "#130d06",
+                      "on-tertiary": "#650b00",
+                      "on-surface-variant": "#d7c3ae",
+                      "on-secondary-fixed-variant": "#00504c",
+                      "background": "#0B0F12",
+                      "on-primary-fixed-variant": "#633f00",
+                      "on-tertiary-fixed": "#3e0400",
+                      "on-tertiary-container": "#8f1400",
+                      "inverse-surface": "#eee0d2"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0px",
+                      "lg": "2px",
+                      "xl": "4px",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "unit": "4px",
+                      "stack-loose": "20px",
+                      "stack-tight": "4px",
+                      "panel-padding": "12px",
+                      "margin-page": "24px",
+                      "gutter": "16px"
+              },
+              "fontFamily": {
+                      "body-base": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "caption": ["Inter"],
+                      "data-label": ["JetBrains Mono"],
+                      "data-value": ["JetBrains Mono"]
+              },
+              "fontSize": {
+                      "body-base": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "headline-md": ["18px", {"lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "caption": ["11px", {"lineHeight": "14px", "fontWeight": "500"}],
+                      "data-label": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                      "data-value": ["14px", {"lineHeight": "16px", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-base selection:bg-primary/30 min-h-screen grid-bg">
+<!-- TopNavBar -->
+<header class="bg-surface sticky top-0 z-50 flex justify-between items-center w-full px-margin-page py-unit h-16 border-b border-outline-variant/30">
+<div class="flex items-center gap-8">
+<span class="font-headline-lg text-headline-lg font-bold text-primary uppercase tracking-tighter">PALBREED</span>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-primary border-b-2 border-primary pb-1 font-body-base text-body-base hover:text-primary-fixed-dim transition-colors" href="#">Calculator</a>
+<a class="text-on-surface-variant font-body-base text-body-base hover:text-primary-fixed-dim transition-colors" href="#">Reverse</a>
+<a class="text-on-surface-variant font-body-base text-body-base hover:text-primary-fixed-dim transition-colors" href="#">Best Combos</a>
+<a class="text-on-surface-variant font-body-base text-body-base hover:text-primary-fixed-dim transition-colors" href="#">Passives</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">settings</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">terminal</button>
+</div>
+</header>
+<main class="max-w-[1280px] mx-auto px-margin-page py-12 relative">
+<!-- Hero Section -->
+<section class="mb-12 border-l-2 border-primary pl-6">
+<h1 class="font-headline-lg text-4xl font-extrabold text-on-surface tracking-tight mb-2 uppercase">Forward Breeding Calculator</h1>
+<p class="text-on-surface-variant font-body-base max-w-xl opacity-80">Pick two parents. See the exact child, type, stats, and passives. Our tactical engine handles the complex breeding power formulas for you.</p>
+</section>
+<!-- Main Tool Area -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter items-start">
+<!-- Parent Panel 1 -->
+<div class="bg-[#151A1E] border border-outline-variant/20 p-panel-padding hud-corner hud-corner-tl hud-corner-tr hud-corner-bl hud-corner-br">
+<div class="flex justify-between items-center mb-4 pb-2 border-b border-outline-variant/10">
+<span class="font-data-label text-data-label text-secondary uppercase tracking-widest">PARENT_ID_01</span>
+<div class="flex gap-2">
+<button class="w-8 h-8 flex items-center justify-center bg-surface-container-high border border-primary/20 text-primary hover:bg-primary hover:text-on-primary-container transition-all">
+<span class="material-symbols-outlined text-sm">male</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center bg-surface-container-highest border border-outline-variant text-on-surface-variant hover:bg-primary/20 transition-all">
+<span class="material-symbols-outlined text-sm">female</span>
+</button>
+</div>
+</div>
+<div class="flex gap-6 items-center">
+<div class="w-24 h-24 bg-surface border border-outline-variant/30 flex items-center justify-center relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent"></div>
+<span class="material-symbols-outlined text-4xl text-primary/40 group-hover:scale-110 transition-transform">pets</span>
+</div>
+<div class="flex-1 space-y-4">
+<div>
+<label class="font-data-label text-[10px] text-on-surface-variant uppercase mb-1 block">Species Selector</label>
+<input class="w-full bg-surface border-0 border-b border-outline-variant focus:ring-0 focus:border-primary text-on-surface font-body-base py-2 placeholder:text-on-surface-variant/30" placeholder="Search Pal species..." type="text"/>
+</div>
+<div class="flex gap-2">
+<span class="px-2 py-0.5 bg-red-900/30 border border-red-500/50 text-red-400 font-data-label text-[10px] uppercase">Fire</span>
+<span class="px-2 py-0.5 bg-orange-900/30 border border-orange-500/50 text-orange-400 font-data-label text-[10px] uppercase">Dragon</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Parent Panel 2 -->
+<div class="bg-[#151A1E] border border-outline-variant/20 p-panel-padding hud-corner hud-corner-tl hud-corner-tr hud-corner-bl hud-corner-br">
+<div class="flex justify-between items-center mb-4 pb-2 border-b border-outline-variant/10">
+<span class="font-data-label text-data-label text-secondary uppercase tracking-widest">PARENT_ID_02</span>
+<div class="flex gap-2">
+<button class="w-8 h-8 flex items-center justify-center bg-surface-container-highest border border-outline-variant text-on-surface-variant hover:bg-primary/20 transition-all">
+<span class="material-symbols-outlined text-sm">male</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center bg-surface-container-high border border-primary/20 text-primary hover:bg-primary hover:text-on-primary-container transition-all">
+<span class="material-symbols-outlined text-sm">female</span>
+</button>
+</div>
+</div>
+<div class="flex gap-6 items-center">
+<div class="w-24 h-24 bg-surface border border-outline-variant/30 flex items-center justify-center relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-br from-secondary/5 to-transparent"></div>
+<span class="material-symbols-outlined text-4xl text-secondary/40 group-hover:scale-110 transition-transform">water_drop</span>
+</div>
+<div class="flex-1 space-y-4">
+<div>
+<label class="font-data-label text-[10px] text-on-surface-variant uppercase mb-1 block">Species Selector</label>
+<input class="w-full bg-surface border-0 border-b border-outline-variant focus:ring-0 focus:border-primary text-on-surface font-body-base py-2 placeholder:text-on-surface-variant/30" placeholder="Search Pal species..." type="text"/>
+</div>
+<div class="flex gap-2">
+<span class="px-2 py-0.5 bg-blue-900/30 border border-blue-500/50 text-blue-400 font-data-label text-[10px] uppercase">Water</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Button -->
+<div class="flex justify-center my-12 relative">
+<div class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-outline-variant/20"></div>
+</div>
+<button class="relative bg-primary-container text-on-primary-container px-12 py-4 font-headline-md uppercase tracking-widest hover:bg-primary transition-all active:scale-95 z-10 hud-corner hud-corner-tl hud-corner-tr hud-corner-bl hud-corner-br">
+                Calculate Outcome
+            </button>
+</div>
+<!-- Result Section -->
+<div class="space-y-gutter animate-in fade-in slide-in-from-bottom-4 duration-700" id="result-area">
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+<!-- Main Result Card -->
+<div class="lg:col-span-1 bg-[#151A1E] border border-primary/30 p-panel-padding hud-corner hud-corner-tl hud-corner-tr hud-corner-bl hud-corner-br relative overflow-hidden">
+<div class="absolute top-0 right-0 p-2 opacity-20">
+<span class="material-symbols-outlined text-4xl">analytics</span>
+</div>
+<span class="font-data-label text-[10px] text-primary uppercase mb-4 block tracking-tighter">PREDICTED_CHILD_RESULT</span>
+<div class="flex flex-col items-center text-center py-6">
+<div class="w-32 h-32 bg-surface border-2 border-primary/40 flex items-center justify-center mb-6 relative">
+<div class="absolute inset-1 border border-primary/10"></div>
+<span class="material-symbols-outlined text-6xl text-primary">egg_alt</span>
+</div>
+<h2 class="font-headline-lg text-primary text-3xl uppercase tracking-tighter mb-2">Anubis Prime</h2>
+<div class="flex gap-2 justify-center mb-6">
+<span class="px-3 py-1 bg-yellow-900/40 border border-yellow-500/60 text-yellow-400 font-data-label text-xs uppercase">Earth</span>
+</div>
+<p class="text-on-surface-variant font-body-base text-sm opacity-70 italic">"The guardian of the desert sands, born of complex genetic synergy."</p>
+</div>
+</div>
+<!-- Stats & Details -->
+<div class="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Stats Card -->
+<div class="bg-[#151A1E] border border-outline-variant/20 p-panel-padding">
+<div class="flex justify-between items-center mb-4">
+<span class="font-data-label text-data-label text-secondary uppercase">Base Intelligence</span>
+<span class="font-data-value text-secondary">ID: 0094-B</span>
+</div>
+<div class="space-y-6">
+<!-- HP -->
+<div class="space-y-1">
+<div class="flex justify-between font-data-label text-[10px] uppercase">
+<span>Vitality (HP)</span>
+<span>540</span>
+</div>
+<div class="h-2 bg-surface flex gap-0.5">
+<div class="flex-1 bg-secondary"></div>
+<div class="flex-1 bg-secondary"></div>
+<div class="flex-1 bg-secondary"></div>
+<div class="flex-1 bg-secondary"></div>
+<div class="flex-1 bg-secondary"></div>
+<div class="flex-1 bg-secondary/30"></div>
+<div class="flex-1 bg-secondary/10"></div>
+<div class="flex-1 bg-secondary/10"></div>
+<div class="flex-1 bg-secondary/10"></div>
+<div class="flex-1 bg-secondary/10"></div>
+</div>
+</div>
+<!-- ATK -->
+<div class="space-y-1">
+<div class="flex justify-between font-data-label text-[10px] uppercase">
+<span>Assault (ATK)</span>
+<span>120</span>
+</div>
+<div class="h-2 bg-surface flex gap-0.5">
+<div class="flex-1 bg-primary"></div>
+<div class="flex-1 bg-primary"></div>
+<div class="flex-1 bg-primary"></div>
+<div class="flex-1 bg-primary"></div>
+<div class="flex-1 bg-primary"></div>
+<div class="flex-1 bg-primary"></div>
+<div class="flex-1 bg-primary"></div>
+<div class="flex-1 bg-primary/30"></div>
+<div class="flex-1 bg-primary/10"></div>
+<div class="flex-1 bg-primary/10"></div>
+</div>
+</div>
+<!-- DEF -->
+<div class="space-y-1">
+<div class="flex justify-between font-data-label text-[10px] uppercase">
+<span>Fortress (DEF)</span>
+<span>100</span>
+</div>
+<div class="h-2 bg-surface flex gap-0.5">
+<div class="flex-1 bg-secondary"></div>
+<div class="flex-1 bg-secondary"></div>
+<div class="flex-1 bg-secondary"></div>
+<div class="flex-1 bg-secondary/30"></div>
+<div class="flex-1 bg-secondary/10"></div>
+<div class="flex-1 bg-secondary/10"></div>
+<div class="flex-1 bg-secondary/10"></div>
+<div class="flex-1 bg-secondary/10"></div>
+<div class="flex-1 bg-secondary/10"></div>
+<div class="flex-1 bg-secondary/10"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Passives & Skills -->
+<div class="bg-[#151A1E] border border-outline-variant/20 p-panel-padding flex flex-col justify-between">
+<div>
+<span class="font-data-label text-data-label text-secondary uppercase mb-4 block">Passive Trait Matrix</span>
+<div class="flex flex-wrap gap-2 mb-6">
+<span class="bg-surface-container-high border border-outline-variant px-3 py-1 text-on-surface font-data-label text-xs">Legendary</span>
+<span class="bg-surface-container-high border border-outline-variant px-3 py-1 text-on-surface font-data-label text-xs">Earth Emperor</span>
+<span class="bg-surface-container-high border border-outline-variant px-3 py-1 text-on-surface font-data-label text-xs">Ferocious</span>
+<span class="bg-surface-container-high border border-outline-variant px-3 py-1 text-on-surface font-data-label text-xs opacity-40">Empty Slot</span>
+</div>
+</div>
+<div class="border-t border-outline-variant/10 pt-4">
+<span class="font-data-label text-[10px] text-on-surface-variant uppercase mb-2 block">Partner Skill: Guardian of Earth</span>
+<p class="text-xs text-on-surface-variant leading-relaxed">Adds Earth damage to the player's attacks while in the team. Highly effective against Electric type enemies.</p>
+</div>
+</div>
+<!-- Work Suitability -->
+<div class="bg-[#151A1E] border border-outline-variant/20 p-panel-padding md:col-span-2">
+<span class="font-data-label text-data-label text-secondary uppercase mb-4 block">Work Suitability Assessment</span>
+<div class="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-12 gap-2">
+<!-- Tasks Icons -->
+<div class="flex flex-col items-center gap-1 opacity-20">
+<span class="material-symbols-outlined text-xl">fire_extinguisher</span>
+<span class="font-data-label text-[8px]">LV.0</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-xl">construction</span>
+<span class="font-data-label text-[8px]">LV.4</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-xl">precision_manufacturing</span>
+<span class="font-data-label text-[8px]">LV.3</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-xl">dining</span>
+<span class="font-data-label text-[8px]">LV.3</span>
+</div>
+<div class="flex flex-col items-center gap-1 opacity-20">
+<span class="material-symbols-outlined text-xl">agriculture</span>
+<span class="font-data-label text-[8px]">LV.0</span>
+</div>
+<div class="flex flex-col items-center gap-1 opacity-20">
+<span class="material-symbols-outlined text-xl">conveyor_belt</span>
+<span class="font-data-label text-[8px]">LV.0</span>
+</div>
+<div class="flex flex-col items-center gap-1 opacity-20">
+<span class="material-symbols-outlined text-xl">local_shipping</span>
+<span class="font-data-label text-[8px]">LV.0</span>
+</div>
+<div class="flex flex-col items-center gap-1 opacity-20">
+<span class="material-symbols-outlined text-xl">medical_services</span>
+<span class="font-data-label text-[8px]">LV.0</span>
+</div>
+<div class="flex flex-col items-center gap-1 opacity-20">
+<span class="material-symbols-outlined text-xl">elevator</span>
+<span class="font-data-label text-[8px]">LV.0</span>
+</div>
+<div class="flex flex-col items-center gap-1 opacity-20">
+<span class="material-symbols-outlined text-xl">electric_bolt</span>
+<span class="font-data-label text-[8px]">LV.0</span>
+</div>
+<div class="flex flex-col items-center gap-1 opacity-20">
+<span class="material-symbols-outlined text-xl">forest</span>
+<span class="font-data-label text-[8px]">LV.0</span>
+</div>
+<div class="flex flex-col items-center gap-1 opacity-20">
+<span class="material-symbols-outlined text-xl">waves</span>
+<span class="font-data-label text-[8px]">LV.0</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Result Share Action -->
+<div class="flex justify-end gap-4 pt-4">
+<button class="flex items-center gap-2 px-6 py-2 border border-outline-variant hover:bg-surface-container transition-all font-data-label uppercase text-xs">
+<span class="material-symbols-outlined text-lg">download</span> Export Data
+                </button>
+<button class="flex items-center gap-2 px-6 py-2 bg-secondary text-on-secondary hover:brightness-110 transition-all font-data-label uppercase text-xs font-bold">
+<span class="material-symbols-outlined text-lg">share</span> Share Result
+                </button>
+</div>
+</div>
+<!-- Tip Text -->
+<div class="mt-16 flex gap-4 items-start bg-primary/5 p-4 border-l-2 border-primary/40">
+<span class="material-symbols-outlined text-primary">info</span>
+<p class="text-sm text-on-surface-variant/80 italic font-body-base leading-relaxed">
+<strong class="text-primary not-italic uppercase font-data-label">Breeding Protocol:</strong> Same-species parents always produce the same species. Different species follow the breeding power formula, calculating the average of both parents' power levels to determine the closest match in the species index.
+            </p>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest dark:bg-surface-container-lowest w-full bottom-0 border-t border-outline-variant/20 px-margin-page py-stack-loose flex flex-col md:flex-row justify-between items-center gap-gutter">
+<div class="flex flex-col items-center md:items-start">
+<span class="font-headline-md text-headline-md text-primary uppercase tracking-tighter mb-1">PalBreed</span>
+<p class="font-data-label text-data-label text-on-surface-variant opacity-80 uppercase">© 2024 PALBREED TACTICAL HUD. ALL RIGHTS RESERVED.</p>
+</div>
+<div class="flex gap-8">
+<a class="font-data-label text-data-label text-on-surface-variant hover:text-secondary-fixed-dim transition-colors opacity-80 hover:opacity-100" href="#">Privacy Policy</a>
+<a class="font-data-label text-data-label text-on-surface-variant hover:text-secondary-fixed-dim transition-colors opacity-80 hover:opacity-100" href="#">Terms of Service</a>
+<a class="font-data-label text-data-label text-on-surface-variant hover:text-secondary-fixed-dim transition-colors opacity-80 hover:opacity-100" href="#">Support</a>
+</div>
+</footer>
+<!-- Subtle HUD Decoration -->
+<div class="fixed top-0 left-0 w-full h-full scanline-overlay z-[100] opacity-[0.03]"></div>
+<script>
+        // Simple micro-interaction for the calculate button
+        document.querySelector('button.relative.bg-primary-container').addEventListener('click', function() {
+            const resultArea = document.getElementById('result-area');
+            resultArea.classList.remove('fade-in', 'slide-in-from-bottom-4');
+            void resultArea.offsetWidth; // Trigger reflow
+            resultArea.classList.add('animate-pulse');
+            setTimeout(() => {
+                resultArea.classList.remove('animate-pulse');
+            }, 500);
+        });
+    </script>
+</body></html>

@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PalBreed // Tactical Breeding Database</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&amp;family=Hanken+Grotesk:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .glow-sm { box-shadow: 0 0 10px rgba(245, 166, 35, 0.3); }
+        .glow-teal { box-shadow: 0 0 10px rgba(78, 205, 196, 0.2); }
+        .scanline {
+            background: linear-gradient(to bottom, transparent 50%, rgba(11, 15, 18, 0.05) 50%);
+            background-size: 100% 4px;
+        }
+        .corner-bracket {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-color: #f5a623;
+        }
+        .corner-tl { top: 0; left: 0; border-top: 2px solid; border-left: 2px solid; }
+        .corner-tr { top: 0; right: 0; border-top: 2px solid; border-right: 2px solid; }
+        .corner-bl { bottom: 0; left: 0; border-bottom: 2px solid; border-left: 2px solid; }
+        .corner-br { bottom: 0; right: 0; border-bottom: 2px solid; border-right: 2px solid; }
+        
+        @keyframes pulse-border {
+            0% { opacity: 0.3; }
+            50% { opacity: 1; }
+            100% { opacity: 0.3; }
+        }
+        .animate-pulse-border {
+            animation: pulse-border 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface-variant": "#d7c3ae",
+                        "on-secondary-container": "#00302d",
+                        "surface-bright": "#363a3d",
+                        "primary": "#ffc880",
+                        "on-secondary-fixed": "#00201e",
+                        "tertiary-container": "#ff9b95",
+                        "on-error-container": "#ffdad6",
+                        "on-primary": "#452b00",
+                        "on-tertiary-container": "#940016",
+                        "secondary-fixed": "#7cf6ec",
+                        "inverse-primary": "#835500",
+                        "on-tertiary-fixed-variant": "#930015",
+                        "secondary-fixed-dim": "#5dd9d0",
+                        "tertiary": "#ffc3bf",
+                        "error-container": "#93000a",
+                        "surface-container-highest": "#313539",
+                        "on-background": "#e0e3e7",
+                        "surface-container-high": "#262a2e",
+                        "on-primary-fixed": "#291800",
+                        "surface-container-lowest": "#0b0f12",
+                        "on-tertiary-fixed": "#410004",
+                        "on-secondary-fixed-variant": "#00504c",
+                        "on-primary-fixed-variant": "#633f00",
+                        "surface-container-low": "#181c1f",
+                        "surface-tint": "#ffb955",
+                        "on-error": "#690005",
+                        "tertiary-fixed": "#ffdad7",
+                        "secondary-container": "#00a29a",
+                        "primary-container": "#f5a623",
+                        "primary-fixed": "#ffddb4",
+                        "error": "#ffb4ab",
+                        "inverse-on-surface": "#2d3134",
+                        "surface-container": "#1c2023",
+                        "outline-variant": "#524534",
+                        "inverse-surface": "#e0e3e7",
+                        "surface-variant": "#313539",
+                        "background": "#101417",
+                        "surface-dim": "#101417",
+                        "primary-fixed-dim": "#ffb955",
+                        "on-surface": "#e0e3e7",
+                        "on-tertiary": "#68000c",
+                        "surface": "#101417",
+                        "secondary": "#5dd9d0",
+                        "on-primary-container": "#644000",
+                        "outline": "#9f8e7a",
+                        "tertiary-fixed-dim": "#ffb3ae",
+                        "on-secondary": "#003734"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "container-max": "1440px",
+                        "base": "4px",
+                        "margin-desktop": "32px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "data-md": ["JetBrains Mono"],
+                        "body-md": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "data-lg": ["JetBrains Mono"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "label-caps": ["JetBrains Mono"],
+                        "headline-sm": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "data-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "data-lg": ["18px", {"lineHeight": "1.4", "letterSpacing": "0", "fontWeight": "500"}],
+                        "headline-md": ["24px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                        "headline-sm": ["18px", {"lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-primary selection:text-on-primary overflow-x-hidden">
+<!-- Tactical Overlay -->
+<div class="fixed inset-0 pointer-events-none z-50 pointer-events-none border-[12px] border-surface-container-lowest opacity-20"></div>
+<div class="fixed inset-0 pointer-events-none z-[60] scanline opacity-[0.03]"></div>
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 border-b border-primary/30 shadow-[0_0_15px_rgba(255,200,128,0.1)] bg-background flex justify-between items-center px-margin-desktop h-16 w-full">
+<div class="flex items-center gap-8">
+<span class="font-headline-md text-headline-md font-bold text-primary tracking-tighter uppercase">PalBreed</span>
+<nav class="hidden md:flex items-center gap-6">
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary hover:glow-sm transition-all active:scale-95 duration-75" href="#">Calculator</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary hover:glow-sm transition-all active:scale-95 duration-75" href="#">Reverse</a>
+<a class="text-primary border-b-2 border-primary pb-1 font-label-caps text-label-caps hover:glow-sm transition-all active:scale-95 duration-75" href="#">Best Combos</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary hover:glow-sm transition-all active:scale-95 duration-75" href="#">Passives</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex bg-surface-container px-3 py-1 items-center gap-2 border border-outline/20">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-data-md font-data-md w-48 text-on-surface p-0 uppercase placeholder:text-on-surface-variant/30" placeholder="QUERY_ENTITY..." type="text"/>
+</div>
+<span class="material-symbols-outlined text-primary cursor-pointer hover:scale-110 transition-transform">terminal</span>
+<span class="material-symbols-outlined text-primary cursor-pointer hover:scale-110 transition-transform">settings</span>
+<span class="material-symbols-outlined text-primary cursor-pointer hover:scale-110 transition-transform">account_circle</span>
+</div>
+</header>
+<main class="pt-24 pb-20 px-margin-desktop max-w-container-max mx-auto relative min-h-screen">
+<!-- Corner Brackets -->
+<div class="corner-bracket corner-tl"></div>
+<div class="corner-bracket corner-tr"></div>
+<div class="corner-bracket corner-bl"></div>
+<div class="corner-bracket corner-br"></div>
+<!-- Page Header -->
+<section class="mb-12 flex flex-col md:flex-row justify-between items-end gap-6 border-b border-secondary/10 pb-8">
+<div class="space-y-1">
+<div class="flex items-center gap-3">
+<div class="w-2 h-8 bg-primary"></div>
+<h1 class="font-headline-lg text-headline-lg text-on-background tracking-tight">Best Palworld Breeding Combos</h1>
+</div>
+<p class="font-data-md text-data-md text-secondary uppercase tracking-widest opacity-80">DATABASE_SYNCED // ACCESS_LEVEL: OPERATOR // V.4.0.2</p>
+</div>
+<div class="flex gap-2">
+<div class="px-4 py-2 border border-secondary/30 bg-secondary/5 flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+<span class="font-label-caps text-label-caps text-secondary">SYSTEMS_OPTIMAL</span>
+</div>
+</div>
+</section>
+<!-- Filter Bar -->
+<section class="mb-10 flex flex-wrap gap-4 items-center justify-between">
+<div class="flex flex-wrap gap-2">
+<button class="px-4 py-2 bg-primary text-on-primary font-label-caps text-label-caps hover:glow-sm transition-all uppercase">All Types</button>
+<button class="px-4 py-2 border border-outline/30 text-on-surface-variant font-label-caps text-label-caps hover:border-primary hover:text-primary transition-all uppercase flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">local_fire_department</span> Fire
+                </button>
+<button class="px-4 py-2 border border-outline/30 text-on-surface-variant font-label-caps text-label-caps hover:border-primary hover:text-primary transition-all uppercase flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">water_drop</span> Water
+                </button>
+<button class="px-4 py-2 border border-outline/30 text-on-surface-variant font-label-caps text-label-caps hover:border-primary hover:text-primary transition-all uppercase flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">bolt</span> Electric
+                </button>
+<button class="px-4 py-2 border border-outline/30 text-on-surface-variant font-label-caps text-label-caps hover:border-primary hover:text-primary transition-all uppercase flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">eco</span> Grass
+                </button>
+<button class="px-4 py-2 border border-outline/30 text-on-surface-variant font-label-caps text-label-caps hover:border-primary hover:text-primary transition-all uppercase flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">dark_mode</span> Dark
+                </button>
+</div>
+<div class="flex items-center gap-4 bg-surface-container-low p-1 border border-outline/10">
+<span class="text-on-surface-variant font-label-caps text-[10px] pl-3">SORT_BY:</span>
+<select class="bg-transparent border-none focus:ring-0 text-primary font-label-caps text-label-caps uppercase pr-8 cursor-pointer">
+<option>Most Popular</option>
+<option>Rarest Yield</option>
+<option>Highest Base Stats</option>
+</select>
+</div>
+</section>
+<!-- Combo Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Card 1: Anubis -->
+<article class="group relative bg-surface-container-lowest border border-secondary/20 hover:border-primary transition-all duration-300 overflow-hidden">
+<!-- Header Strip -->
+<div class="bg-surface-container-high px-4 py-2 flex justify-between items-center border-b border-secondary/20">
+<span class="font-label-caps text-[10px] text-primary bg-primary/10 px-2 py-0.5 border border-primary/30">LEGENDARY_SPEC</span>
+<span class="font-data-md text-data-md text-on-surface-variant">ID: #100</span>
+</div>
+<!-- Visual Content -->
+<div class="relative h-48 bg-surface-container-low overflow-hidden flex items-center justify-center border-b border-secondary/10">
+
+<div class="relative z-10 w-32 h-32 border-2 border-primary/30 rounded-full flex items-center justify-center p-2 bg-background/50 backdrop-blur-sm shadow-[0_0_20px_rgba(245,166,35,0.15)] group-hover:scale-105 transition-transform duration-500">
+<img class="w-full h-full object-contain" data-alt="A stylized, low-poly 3D render of an Egyptian-themed creature standing in a heroic pose. The lighting is dramatic, casting deep shadows against a background of glowing amber runes. The color palette is dominated by dark obsidian and brilliant gold highlights, fitting the tactical, dark-mode terminal aesthetic of a futuristic monster-breeding simulator." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfTQFdRWGV-SpeAFDJxWM7W1E1q500Ym96kOG75tZQvXIM_EtzM3tfb19k5PFdHYgh12ipzYxaqCpr1Ddm9SXFqyw5HDDLRKCJya5Xpn5WqR14wFQwDTLDxnxRpm8z5nIILRkvwp0Zm61DcN4dUu8dIeeKmtVIr_0oeHihcQsSdsaMn7Q7A4PoymTGb0IlA7K7Elhu6poDy2KfTbqYrMjQqPeZb8l8UmwOxnJPsSVS6YFvr7HBLJ__bo7uTz8LxkIpprKoTyH0pa0"/>
+</div>
+</div>
+<!-- Info Body -->
+<div class="p-6 space-y-6">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface uppercase tracking-tight group-hover:text-primary transition-colors">Anubis</h2>
+<p class="font-label-caps text-[11px] text-secondary">EARTH_ELEMENT // COMBAT_TYPE_A</p>
+</div>
+<!-- Parents -->
+<div class="flex items-center justify-between gap-4 p-3 bg-surface-container-low border border-outline/10">
+<div class="flex flex-col items-center gap-1 flex-1">
+<span class="font-label-caps text-[9px] text-on-surface-variant/50">PARENT_01</span>
+<div class="flex items-center gap-2 text-on-surface">
+<span class="material-symbols-outlined text-[20px] text-secondary">egg</span>
+<span class="font-data-md text-data-md">Penking</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary animate-pulse-border">link</span>
+<div class="flex flex-col items-center gap-1 flex-1">
+<span class="font-label-caps text-[9px] text-on-surface-variant/50">PARENT_02</span>
+<div class="flex items-center gap-2 text-on-surface">
+<span class="material-symbols-outlined text-[20px] text-secondary">egg</span>
+<span class="font-data-md text-data-md">Bushi</span>
+</div>
+</div>
+</div>
+<!-- Stats -->
+<div class="space-y-3">
+<div class="space-y-1">
+<div class="flex justify-between font-label-caps text-[10px] text-on-surface-variant uppercase">
+<span>HP_POTENTIAL</span>
+<span class="text-primary">88%</span>
+</div>
+<div class="h-1 w-full bg-surface-container-highest">
+<div class="h-full bg-secondary glow-teal transition-all duration-1000" style="width: 88%"></div>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between font-label-caps text-[10px] text-on-surface-variant uppercase">
+<span>ATK_POTENTIAL</span>
+<span class="text-primary">95%</span>
+</div>
+<div class="h-1 w-full bg-surface-container-highest">
+<div class="h-full bg-primary glow-sm transition-all duration-1000" style="width: 95%"></div>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between font-label-caps text-[10px] text-on-surface-variant uppercase">
+<span>DEF_POTENTIAL</span>
+<span class="text-primary">72%</span>
+</div>
+<div class="h-1 w-full bg-surface-container-highest">
+<div class="h-full bg-secondary glow-teal transition-all duration-1000" style="width: 72%"></div>
+</div>
+</div>
+</div>
+<!-- Passives -->
+<div class="flex flex-wrap gap-2">
+<div class="px-2 py-1 bg-surface-container-high border-l-2 border-primary text-[10px] font-label-caps text-on-surface">FEROCIOUS</div>
+<div class="px-2 py-1 bg-surface-container-high border-l-2 border-primary text-[10px] font-label-caps text-on-surface">MUSCLEHEAD</div>
+<div class="px-2 py-1 bg-surface-container-high border-l-2 border-secondary text-[10px] font-label-caps text-on-surface-variant">SWIFT</div>
+</div>
+<button class="w-full py-3 border border-primary/50 text-primary font-label-caps text-label-caps hover:bg-primary hover:text-on-primary transition-all uppercase flex items-center justify-center gap-2 group/btn">
+                        View Full Sequence
+                        <span class="material-symbols-outlined text-[18px] group-hover/btn:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</article>
+<!-- Card 2: Shadowbeak -->
+<article class="group relative bg-surface-container-lowest border border-secondary/20 hover:border-primary transition-all duration-300 overflow-hidden">
+<div class="bg-surface-container-high px-4 py-2 flex justify-between items-center border-b border-secondary/20">
+<span class="font-label-caps text-[10px] text-primary bg-primary/10 px-2 py-0.5 border border-primary/30">ULTRA_RARE</span>
+<span class="font-data-md text-data-md text-on-surface-variant">ID: #108</span>
+</div>
+<div class="relative h-48 bg-surface-container-low overflow-hidden flex items-center justify-center border-b border-secondary/10">
+
+<div class="relative z-10 w-32 h-32 border-2 border-primary/30 rounded-full flex items-center justify-center p-2 bg-background/50 backdrop-blur-sm shadow-[0_0_20px_rgba(245,166,35,0.15)] group-hover:scale-105 transition-transform duration-500">
+<img class="w-full h-full object-contain" data-alt="A dark-winged mythological griffin creature with violet glowing accents, designed in a sleek digital painting style. The creature stands amidst a rain of digital artifacts and glowing geometric particles. The lighting is cool-toned with sharp highlights of magenta and cyan, fitting the tactical industrial aesthetic of a high-end gaming data terminal." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRD5UMnJw1p6MEqHWY6UundxRlT6S0x65Zn7qZCaEaIdiN1qUqnpTlJq4e-sUvV7ruxsl5oCTM_tMdy3WS45iSZdkwLHiczb3_wuvbwUFIF_kSOWV1kjjHFcf0pB26Qh2yi_qwF2yn3oI2h3XpeZTXVnX1L2V3ZotJ-PpOPebqkgA2lpmAG7Cs_uCeAonzwvl3N26CTd-cDW8eU9FCRNNY4x3Zepc1JAVjn047giOzzr57rpiOCOnKzzidumUZeoeHvOhRre5E-xo"/>
+</div>
+</div>
+<div class="p-6 space-y-6">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface uppercase tracking-tight group-hover:text-primary transition-colors">Shadowbeak</h2>
+<p class="font-label-caps text-[11px] text-secondary">DARK_ELEMENT // AERIAL_SPEC</p>
+</div>
+<div class="flex items-center justify-between gap-4 p-3 bg-surface-container-low border border-outline/10">
+<div class="flex flex-col items-center gap-1 flex-1">
+<span class="font-label-caps text-[9px] text-on-surface-variant/50">PARENT_01</span>
+<div class="flex items-center gap-2 text-on-surface">
+<span class="material-symbols-outlined text-[20px] text-secondary">egg</span>
+<span class="font-data-md text-data-md">Kitsun</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary animate-pulse-border">link</span>
+<div class="flex flex-col items-center gap-1 flex-1">
+<span class="font-label-caps text-[9px] text-on-surface-variant/50">PARENT_02</span>
+<div class="flex items-center gap-2 text-on-surface">
+<span class="material-symbols-outlined text-[20px] text-secondary">egg</span>
+<span class="font-data-md text-data-md">Astegon</span>
+</div>
+</div>
+</div>
+<div class="space-y-3">
+<div class="space-y-1"><div class="flex justify-between font-label-caps text-[10px] text-on-surface-variant uppercase"><span>HP_POTENTIAL</span><span class="text-primary">92%</span></div><div class="h-1 w-full bg-surface-container-highest"><div class="h-full bg-secondary glow-teal" style="width: 92%"></div></div></div>
+<div class="space-y-1"><div class="flex justify-between font-label-caps text-[10px] text-on-surface-variant uppercase"><span>ATK_POTENTIAL</span><span class="text-primary">98%</span></div><div class="h-1 w-full bg-surface-container-highest"><div class="h-full bg-primary glow-sm" style="width: 98%"></div></div></div>
+<div class="space-y-1"><div class="flex justify-between font-label-caps text-[10px] text-on-surface-variant uppercase"><span>DEF_POTENTIAL</span><span class="text-primary">85%</span></div><div class="h-1 w-full bg-surface-container-highest"><div class="h-full bg-secondary glow-teal" style="width: 85%"></div></div></div>
+</div>
+<div class="flex flex-wrap gap-2">
+<div class="px-2 py-1 bg-surface-container-high border-l-2 border-primary text-[10px] font-label-caps text-on-surface">LEGENDARY</div>
+<div class="px-2 py-1 bg-surface-container-high border-l-2 border-primary text-[10px] font-label-caps text-on-surface">LORD_OF_DARK</div>
+</div>
+<button class="w-full py-3 border border-primary/50 text-primary font-label-caps text-label-caps hover:bg-primary hover:text-on-primary transition-all uppercase flex items-center justify-center gap-2">View Full Sequence</button>
+</div>
+</article>
+<!-- Card 3: Jormuntide Ignis -->
+<article class="group relative bg-surface-container-lowest border border-secondary/20 hover:border-primary transition-all duration-300 overflow-hidden">
+<div class="bg-surface-container-high px-4 py-2 flex justify-between items-center border-b border-secondary/20">
+<span class="font-label-caps text-[10px] text-primary bg-primary/10 px-2 py-0.5 border border-primary/30">FUSION_VARIANT</span>
+<span class="font-data-md text-data-md text-on-surface-variant">ID: #101B</span>
+</div>
+<div class="relative h-48 bg-surface-container-low overflow-hidden flex items-center justify-center border-b border-secondary/10">
+
+<div class="relative z-10 w-32 h-32 border-2 border-primary/30 rounded-full flex items-center justify-center p-2 bg-background/50 backdrop-blur-sm shadow-[0_0_20px_rgba(245,166,35,0.15)] group-hover:scale-105 transition-transform duration-500">
+<img class="w-full h-full object-contain" data-alt="A massive, fiery serpent dragon creature coiled in a spiral, its scales glowing like molten lava. The atmosphere is thick with volcanic ash and embers, illuminated by a harsh, warm orange glow. The visual style is hyper-detailed 3D digital art, evoking a sense of raw power and tactical complexity. The background features technical UI overlays and scanning lines, maintaining the system HUD aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9n2jkmvA2r7dbaObAaIYoAe4qcbvRcABOPOOhkv2doWACWTrAEFta_grR6iCJ4E9ajSmezxKeIuh35FiWrS53x6XPd-a80uQdU9lv_c6KsaWKj9_PMl1Tn15kHP5ohaQL7K36e8eYGS7m1ZKWAn9rZYl-RfE-BVnGTO4k_3BPB9QXnRDIeDznQpD0kiCsnlaMru6eloxHzTkYLWf3mwJFr7PB8SEFmafqwcuai8C2S4EyfN7UziuRmN4Z1HVDLD7U_TlZo3CouOQ"/>
+</div>
+</div>
+<div class="p-6 space-y-6">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface uppercase tracking-tight group-hover:text-primary transition-colors">Jormuntide Ignis</h2>
+<p class="font-label-caps text-[11px] text-secondary">FIRE_DRAGON_ELEMENT // AQUA_HYBRID</p>
+</div>
+<div class="flex items-center justify-between gap-4 p-3 bg-surface-container-low border border-outline/10">
+<div class="flex flex-col items-center gap-1 flex-1">
+<span class="font-label-caps text-[9px] text-on-surface-variant/50">PARENT_01</span>
+<div class="flex items-center gap-2 text-on-surface">
+<span class="material-symbols-outlined text-[20px] text-secondary">egg</span>
+<span class="font-data-md text-data-md">Jormuntide</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary animate-pulse-border">link</span>
+<div class="flex flex-col items-center gap-1 flex-1">
+<span class="font-label-caps text-[9px] text-on-surface-variant/50">PARENT_02</span>
+<div class="flex items-center gap-2 text-on-surface">
+<span class="material-symbols-outlined text-[20px] text-secondary">egg</span>
+<span class="font-data-md text-data-md">Blazamut</span>
+</div>
+</div>
+</div>
+<div class="space-y-3">
+<div class="space-y-1"><div class="flex justify-between font-label-caps text-[10px] text-on-surface-variant uppercase"><span>HP_POTENTIAL</span><span class="text-primary">85%</span></div><div class="h-1 w-full bg-surface-container-highest"><div class="h-full bg-secondary glow-teal" style="width: 85%"></div></div></div>
+<div class="space-y-1"><div class="flex justify-between font-label-caps text-[10px] text-on-surface-variant uppercase"><span>ATK_POTENTIAL</span><span class="text-primary">99%</span></div><div class="h-1 w-full bg-surface-container-highest"><div class="h-full bg-primary glow-sm" style="width: 99%"></div></div></div>
+<div class="space-y-1"><div class="flex justify-between font-label-caps text-[10px] text-on-surface-variant uppercase"><span>DEF_POTENTIAL</span><span class="text-primary">90%</span></div><div class="h-1 w-full bg-surface-container-highest"><div class="h-full bg-secondary glow-teal" style="width: 90%"></div></div></div>
+</div>
+<div class="flex flex-wrap gap-2">
+<div class="px-2 py-1 bg-surface-container-high border-l-2 border-primary text-[10px] font-label-caps text-on-surface">FLAME_EMPEROR</div>
+<div class="px-2 py-1 bg-surface-container-high border-l-2 border-secondary text-[10px] font-label-caps text-on-surface-variant">WORK_SLAVE</div>
+</div>
+<button class="w-full py-3 border border-primary/50 text-primary font-label-caps text-label-caps hover:bg-primary hover:text-on-primary transition-all uppercase flex items-center justify-center gap-2">View Full Sequence</button>
+</div>
+</article>
+</div>
+<!-- Data Visualization Section (Secondary) -->
+<section class="mt-20 p-8 border border-secondary/10 bg-surface-container-lowest/50">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-6 flex items-center gap-2 uppercase tracking-tighter">
+<span class="material-symbols-outlined text-primary">analytics</span>
+                Genetic Efficiency Distribution
+            </h3>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+<div class="bg-surface-container-low p-4 border border-outline/10">
+<p class="font-label-caps text-[10px] text-on-surface-variant mb-2">AVG_MUTATION_RATE</p>
+<p class="font-data-lg text-data-lg text-primary">0.024%</p>
+</div>
+<div class="bg-surface-container-low p-4 border border-outline/10">
+<p class="font-label-caps text-[10px] text-on-surface-variant mb-2">ACTIVE_SIMULATIONS</p>
+<p class="font-data-lg text-data-lg text-secondary">4,892</p>
+</div>
+<div class="bg-surface-container-low p-4 border border-outline/10">
+<p class="font-label-caps text-[10px] text-on-surface-variant mb-2">SUCCESS_CHANCE_MAX</p>
+<p class="font-data-lg text-data-lg text-primary">94.1%</p>
+</div>
+<div class="bg-surface-container-low p-4 border border-outline/10">
+<p class="font-label-caps text-[10px] text-on-surface-variant mb-2">UPTIME_CLOCK</p>
+<p class="font-data-lg text-data-lg text-secondary" id="system-clock">00:00:00</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full relative bottom-0 border-t border-secondary/20 bg-surface-container-lowest flex flex-col md:flex-row justify-between items-center px-margin-desktop py-base gap-4 py-8">
+<div class="flex flex-col gap-1">
+<span class="font-label-caps text-label-caps text-on-surface-variant">PALBREED COMMAND</span>
+<p class="font-data-md text-data-md text-secondary opacity-70">© 2024 PALBREED COMMAND. ALL RIGHTS RESERVED. SYSTEM STATUS: OPTIMAL</p>
+</div>
+<div class="flex gap-8">
+<a class="font-data-md text-data-md text-on-surface-variant opacity-70 hover:text-secondary hover:opacity-100 transition-all cursor-pointer" href="#">Privacy Protocol</a>
+<a class="font-data-md text-data-md text-on-surface-variant opacity-70 hover:text-secondary hover:opacity-100 transition-all cursor-pointer" href="#">Terms of Engagement</a>
+<a class="font-data-md text-data-md text-on-surface-variant opacity-70 hover:text-secondary hover:opacity-100 transition-all cursor-pointer" href="#">System Logs</a>
+</div>
+</footer>
+<!-- Micro-interactions Script -->
+<script>
+        // System Clock Simulation
+        function updateClock() {
+            const clock = document.getElementById('system-clock');
+            const now = new Date();
+            const h = String(now.getHours()).padStart(2, '0');
+            const m = String(now.getMinutes()).padStart(2, '0');
+            const s = String(now.getSeconds()).padStart(2, '0');
+            clock.textContent = `${h}:${m}:${s}`;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // Reveal animations on scroll
+        const cards = document.querySelectorAll('article');
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-8');
+                }
+            });
+        }, observerOptions);
+
+        cards.forEach(card => {
+            card.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-8');
+            observer.observe(card);
+        });
+    </script>
+</body></html>

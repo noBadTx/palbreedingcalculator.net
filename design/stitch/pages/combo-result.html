@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PalBreed | Breeding Result</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-variant": "#2d363a",
+                    "inverse-surface": "#dae4e9",
+                    "background": "#0b1519",
+                    "surface-container": "#182125",
+                    "outline-variant": "#524534",
+                    "error": "#ffb4ab",
+                    "primary-fixed": "#ffddb4",
+                    "inverse-on-surface": "#283236",
+                    "secondary-container": "#00a29a",
+                    "primary-container": "#f5a623",
+                    "tertiary-fixed-dim": "#c2c7cc",
+                    "outline": "#9f8e7a",
+                    "on-primary-container": "#644000",
+                    "on-secondary": "#003734",
+                    "surface": "#0b1519",
+                    "secondary": "#5dd9d0",
+                    "on-surface": "#dae4e9",
+                    "surface-dim": "#0b1519",
+                    "primary-fixed-dim": "#ffb955",
+                    "on-tertiary": "#2c3135",
+                    "secondary-fixed": "#7cf6ec",
+                    "on-tertiary-container": "#43484d",
+                    "secondary-fixed-dim": "#5dd9d0",
+                    "on-tertiary-fixed-variant": "#42474c",
+                    "inverse-primary": "#835500",
+                    "on-primary": "#452b00",
+                    "on-error-container": "#ffdad6",
+                    "tertiary-container": "#b2b7bc",
+                    "on-secondary-fixed": "#00201e",
+                    "primary": "#ffc880",
+                    "surface-bright": "#313b3f",
+                    "on-surface-variant": "#d7c3ae",
+                    "on-secondary-container": "#00302d",
+                    "surface-tint": "#ffb955",
+                    "on-error": "#690005",
+                    "tertiary-fixed": "#dfe3e8",
+                    "on-tertiary-fixed": "#171c20",
+                    "on-secondary-fixed-variant": "#00504c",
+                    "surface-container-low": "#141d21",
+                    "on-primary-fixed-variant": "#633f00",
+                    "on-primary-fixed": "#291800",
+                    "surface-container-high": "#222b30",
+                    "surface-container-lowest": "#060f13",
+                    "error-container": "#93000a",
+                    "tertiary": "#ced2d8",
+                    "on-background": "#dae4e9",
+                    "surface-container-highest": "#2d363a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "xs": "4px",
+                    "xl": "40px",
+                    "md": "16px",
+                    "margin-desktop": "32px",
+                    "lg": "24px",
+                    "sm": "8px",
+                    "margin-mobile": "16px",
+                    "gutter": "16px",
+                    "base": "4px"
+            },
+            "fontFamily": {
+                    "body-md": ["Hanken Grotesk"],
+                    "headline-lg": ["Hanken Grotesk"],
+                    "label-caps": ["JetBrains Mono"],
+                    "headline-md": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "label-sm": ["JetBrains Mono"],
+                    "headline-sm": ["Hanken Grotesk"],
+                    "data-mono": ["JetBrains Mono"]
+            },
+            "fontSize": {
+                    "body-md": ["14px", {"lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-caps": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.08em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}],
+                    "label-sm": ["11px", {"lineHeight": "1.2", "letterSpacing": "0.01em", "fontWeight": "400"}],
+                    "headline-sm": ["18px", {"lineHeight": "1.4", "letterSpacing": "0em", "fontWeight": "600"}],
+                    "data-mono": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.02em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #0b1519;
+            background-image: radial-gradient(circle at 2px 2px, rgba(255, 200, 128, 0.05) 1px, transparent 0);
+            background-size: 32px 32px;
+        }
+        .tactical-underline {
+            position: relative;
+        }
+        .tactical-underline::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background-color: #ffc880;
+        }
+        .scanline {
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #5dd9d0, transparent);
+            position: absolute;
+            animation: scan 4s linear infinite;
+            opacity: 0.2;
+        }
+        @keyframes scan {
+            from { top: 0; }
+            to { top: 100%; }
+        }
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            transform: rotate(45deg);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #182125;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #524534;
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-surface antialiased">
+<!-- TopNavBar -->
+<header class="bg-surface-container flex justify-between items-center w-full px-margin-desktop h-16 max-w-full border-b border-outline-variant fixed top-0 z-50">
+<div class="flex items-center gap-md">
+<span class="font-headline-md text-headline-md font-bold text-primary tracking-tighter">PalBreed</span>
+</div>
+<nav class="hidden md:flex gap-lg">
+<a class="font-body-md text-body-md text-primary border-b-2 border-primary pb-1 hover:text-primary transition-colors transition-all duration-150 active:opacity-80" href="#">Calculator</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors transition-all duration-150 active:opacity-80" href="#">Reverse</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors transition-all duration-150 active:opacity-80" href="#">Best Combos</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors transition-all duration-150 active:opacity-80" href="#">Passives</a>
+</nav>
+<div class="flex items-center gap-md">
+<button class="material-symbols-outlined text-primary transition-all duration-150 active:opacity-80">settings</button>
+<button class="material-symbols-outlined text-primary transition-all duration-150 active:opacity-80">account_circle</button>
+</div>
+</header>
+<main class="mt-24 px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto pb-24">
+<!-- Breadcrumb -->
+<nav class="mb-lg">
+<p class="font-data-mono text-label-sm text-outline uppercase tracking-widest flex items-center gap-xs">
+                Calculator <span class="material-symbols-outlined text-[12px]">chevron_right</span> 
+                Relaxaurus + Sparkit <span class="material-symbols-outlined text-[12px]">chevron_right</span>
+<span class="text-primary">Result</span>
+</p>
+</nav>
+<!-- Header -->
+<div class="mb-xl">
+<h1 class="font-headline-lg text-headline-lg text-on-surface tactical-underline uppercase tracking-tight">
+                Breeding Result
+            </h1>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-lg items-start">
+<!-- Parents Column -->
+<div class="lg:col-span-4 space-y-lg">
+<div class="font-label-caps text-label-caps text-outline mb-sm flex items-center gap-sm">
+<span class="status-dot bg-primary"></span> SOURCE GENETIC MATERIAL
+                </div>
+<!-- Parent 1 -->
+<div class="bg-surface-container border-l-2 border-primary p-md relative overflow-hidden group">
+<div class="scanline"></div>
+<div class="flex justify-between items-start mb-md">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-primary uppercase">Relaxaurus</h3>
+<div class="flex gap-xs mt-xs">
+<span class="bg-surface-variant px-xs py-1 text-[10px] font-label-caps border border-outline-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">fire_hydrant</span> WATER
+                                </span>
+<span class="bg-surface-variant px-xs py-1 text-[10px] font-label-caps border border-outline-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">eco</span> DRAGON
+                                </span>
+</div>
+</div>
+<span class="material-symbols-outlined text-secondary">male</span>
+</div>
+<div class="space-y-xs">
+<p class="font-label-sm text-label-sm text-outline uppercase">Work Suitability</p>
+<div class="flex flex-wrap gap-xs">
+<span class="font-data-mono text-[10px] text-on-surface-variant border border-outline-variant px-xs bg-surface-container-low">Transporting Lvl 3</span>
+<span class="font-data-mono text-[10px] text-on-surface-variant border border-outline-variant px-xs bg-surface-container-low">Watering Lvl 2</span>
+</div>
+</div>
+<div class="absolute -right-4 -bottom-4 opacity-10">
+<span class="material-symbols-outlined text-[80px]" style="font-variation-settings: 'FILL' 1;">hexagon</span>
+</div>
+</div>
+<!-- Flow Icon -->
+<div class="flex justify-center py-md">
+<div class="h-12 w-[1px] bg-outline-variant relative">
+<div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-3 h-3 border-b-2 border-r-2 border-primary rotate-45"></div>
+</div>
+</div>
+<!-- Parent 2 -->
+<div class="bg-surface-container border-l-2 border-secondary p-md relative overflow-hidden">
+<div class="flex justify-between items-start mb-md">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-secondary uppercase">Sparkit</h3>
+<div class="flex gap-xs mt-xs">
+<span class="bg-surface-variant px-xs py-1 text-[10px] font-label-caps border border-outline-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">bolt</span> ELECTRIC
+                                </span>
+</div>
+</div>
+<span class="material-symbols-outlined text-error">female</span>
+</div>
+<div class="space-y-xs">
+<p class="font-label-sm text-label-sm text-outline uppercase">Work Suitability</p>
+<div class="flex flex-wrap gap-xs">
+<span class="font-data-mono text-[10px] text-on-surface-variant border border-outline-variant px-xs bg-surface-container-low">Handiwork Lvl 1</span>
+<span class="font-data-mono text-[10px] text-on-surface-variant border border-outline-variant px-xs bg-surface-container-low">Generating Power Lvl 1</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Result Center Column -->
+<div class="lg:col-span-8">
+<!-- Child Card -->
+<div class="bg-surface-container border border-outline-variant p-lg relative">
+<div class="absolute top-0 right-0 p-sm">
+<span class="font-data-mono text-[10px] text-primary bg-primary/10 border border-primary/20 px-sm py-1">RESULT ID: PAL-085B</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+<!-- Left Side: Visuals -->
+<div class="bg-background border border-outline-variant aspect-square flex flex-col items-center justify-center relative overflow-hidden group">
+<div class="absolute inset-0 opacity-20 pointer-events-none">
+<div class="w-full h-full" style="background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, #ffc880 10px, #ffc880 11px);"></div>
+</div>
+<span class="material-symbols-outlined text-[120px] text-primary transition-transform group-hover:scale-110 duration-500" style="font-variation-settings: 'FILL' 1;">electric_bolt</span>
+<div class="mt-lg text-center z-10">
+<h2 class="font-headline-md text-headline-md text-on-surface tracking-widest uppercase">Relaxaurus Lux</h2>
+<div class="flex justify-center gap-sm mt-sm">
+<span class="px-md py-1 bg-secondary text-on-secondary font-label-caps text-[12px] flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">bolt</span> ELECTRIC
+                                    </span>
+<span class="px-md py-1 border border-outline text-on-surface font-label-caps text-[12px] flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">eco</span> DRAGON
+                                    </span>
+</div>
+</div>
+</div>
+<!-- Right Side: Stats & Info -->
+<div class="space-y-lg">
+<div class="border-b border-outline-variant pb-md">
+<h4 class="font-label-caps text-label-caps text-primary mb-xs">Partner Skill</h4>
+<h5 class="font-headline-sm text-headline-sm text-on-surface mb-xs">Sparkling Wyvern</h5>
+<p class="font-body-md text-body-md text-on-surface-variant">Can be ridden. While fighting together, Relaxaurus Lux attacks with rapid-fire thunder missiles.</p>
+</div>
+<div class="space-y-md">
+<h4 class="font-label-caps text-label-caps text-outline">Base Performance Metrics</h4>
+<div class="space-y-sm">
+<div class="space-y-1">
+<div class="flex justify-between font-data-mono text-[11px] text-on-surface">
+<span>VITALITY (HP)</span>
+<span>110 / 150</span>
+</div>
+<div class="h-2 bg-surface-variant w-full">
+<div class="h-full bg-secondary w-[73%] transition-all duration-1000"></div>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between font-data-mono text-[11px] text-on-surface">
+<span>ASSAULT (ATK)</span>
+<span>100 / 150</span>
+</div>
+<div class="h-2 bg-surface-variant w-full">
+<div class="h-full bg-secondary w-[66%] transition-all duration-1000 delay-100"></div>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between font-data-mono text-[11px] text-on-surface">
+<span>FORTRESS (DEF)</span>
+<span>80 / 150</span>
+</div>
+<div class="h-2 bg-surface-variant w-full">
+<div class="h-full bg-secondary w-[53%] transition-all duration-1000 delay-200"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-md">
+<h4 class="font-label-caps text-label-caps text-outline mb-sm">Passive Slots</h4>
+<div class="grid grid-cols-2 gap-sm">
+<div class="border border-dashed border-outline-variant p-sm flex items-center justify-center font-data-mono text-[10px] text-outline">EMPTY_SLOT_01</div>
+<div class="border border-dashed border-outline-variant p-sm flex items-center justify-center font-data-mono text-[10px] text-outline">EMPTY_SLOT_02</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Breeding Logic Footer -->
+<div class="mt-xl border-t border-outline-variant pt-lg flex flex-col md:flex-row justify-between items-start gap-lg">
+<div class="max-w-md">
+<h4 class="font-label-caps text-label-caps text-primary flex items-center gap-xs mb-xs">
+<span class="material-symbols-outlined text-[16px]">terminal</span> GENETIC_ALGORITHM_LOG
+                            </h4>
+<p class="font-data-mono text-[12px] text-on-surface-variant">
+                                Average Breeding Power detected at <span class="text-secondary">280</span>. 
+                                Formula: (Relaxaurus[280] + Sparkit[280]) / 2.
+                                Result stability confirmed at <span class="text-secondary">100% probability</span>.
+                            </p>
+</div>
+<div class="w-full md:w-auto">
+<button class="w-full md:w-auto bg-primary text-on-primary px-lg py-md font-label-caps hover:brightness-110 active:opacity-80 transition-all flex items-center justify-center gap-md">
+                                ADD TO BREEDING LIST <span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Secondary Actions -->
+<div class="mt-lg flex flex-col md:flex-row gap-md">
+<div class="flex-1 bg-surface-container border border-outline-variant p-md flex items-center justify-between">
+<div>
+<p class="font-label-caps text-label-sm text-outline">SHARE DATA LINK</p>
+<code class="text-primary text-[13px]">palbreed.app/r/rel-spark-lx</code>
+</div>
+<button class="material-symbols-outlined p-sm hover:bg-surface-variant transition-colors border border-outline-variant">content_copy</button>
+</div>
+<a class="md:w-64 border border-secondary text-secondary hover:bg-secondary/10 transition-colors flex items-center justify-center gap-sm font-label-caps" href="#">
+                        REVERSE LOOKUP <span class="material-symbols-outlined">restart_alt</span>
+</a>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest flex flex-col md:flex-row justify-between items-center w-full px-margin-desktop py-lg gap-md border-t border-outline-variant">
+<div class="font-label-caps text-label-caps text-on-surface">PalBreed Tactical</div>
+<div class="flex gap-lg">
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-secondary underline transition-opacity duration-200" href="#">Database</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-secondary underline transition-opacity duration-200" href="#">API</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-secondary underline transition-opacity duration-200" href="#">Terms</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-secondary underline transition-opacity duration-200" href="#">Privacy</a>
+</div>
+<div class="font-label-sm text-label-sm text-secondary">
+            © 2024 PalBreed Tactical. All rights reserved.
+        </div>
+</footer>
+<!-- FAB (Suppressed on Details Page per system instructions) -->
+<script>
+        // Micro-interactions
+        document.querySelectorAll('button, a').forEach(el => {
+            el.addEventListener('click', (e) => {
+                const ripple = document.createElement('div');
+                ripple.className = 'fixed bg-primary opacity-30 pointer-events-none rounded-full -translate-x-1/2 -translate-y-1/2 animate-ping';
+                ripple.style.width = '20px';
+                ripple.style.height = '20px';
+                ripple.style.left = e.clientX + 'px';
+                ripple.style.top = e.clientY + 'px';
+                document.body.appendChild(ripple);
+                setTimeout(() => ripple.remove(), 500);
+            });
+        });
+    </script>
+</body></html>

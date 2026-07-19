@@ -1,0 +1,211 @@
+{
+  "pals": [
+    {
+      "id": "lamball",
+      "name": "Lamball",
+      "combiRank": 1,
+      "types": [
+        "Neutral"
+      ],
+      "passives": [
+        "lucky"
+      ],
+      "work": {
+        "handiwork": 1,
+        "transporting": 1
+      }
+    },
+    {
+      "id": "chikipi",
+      "name": "Chikipi",
+      "combiRank": 2,
+      "types": [
+        "Neutral"
+      ],
+      "passives": [],
+      "work": {
+        "gathering": 1
+      }
+    },
+    {
+      "id": "cattiva",
+      "name": "Cattiva",
+      "combiRank": 3,
+      "types": [
+        "Neutral"
+      ],
+      "passives": [
+        "cheery"
+      ],
+      "work": {
+        "handiwork": 1,
+        "mining": 1
+      }
+    },
+    {
+      "id": "foxparks",
+      "name": "Foxparks",
+      "combiRank": 10,
+      "types": [
+        "Fire"
+      ],
+      "passives": [
+        "kindling"
+      ],
+      "work": {
+        "kindling": 1
+      }
+    },
+    {
+      "id": "pengullet",
+      "name": "Pengullet",
+      "combiRank": 11,
+      "types": [
+        "Water",
+        "Ice"
+      ],
+      "passives": [
+        "hydro"
+      ],
+      "work": {
+        "handiwork": 1,
+        "watering": 1,
+        "cooling": 1
+      }
+    },
+    {
+      "id": "surfent",
+      "name": "Surfent",
+      "combiRank": 65,
+      "types": [
+        "Water"
+      ],
+      "passives": [],
+      "work": {
+        "watering": 2
+      }
+    },
+    {
+      "id": "anubis",
+      "name": "Anubis",
+      "combiRank": 120,
+      "types": [
+        "Ground"
+      ],
+      "passives": [
+        "lord"
+      ],
+      "work": {
+        "handiwork": 4,
+        "mining": 3,
+        "transporting": 2
+      }
+    },
+    {
+      "id": "relaxaurus",
+      "name": "Relaxaurus",
+      "combiRank": 85,
+      "types": [
+        "Dragon",
+        "Water"
+      ],
+      "passives": [],
+      "work": {
+        "watering": 2,
+        "transporting": 1
+      }
+    },
+    {
+      "id": "sparkit",
+      "name": "Sparkit",
+      "combiRank": 5,
+      "types": [
+        "Electric"
+      ],
+      "passives": [],
+      "work": {
+        "generating": 1
+      }
+    },
+    {
+      "id": "relaxaurus-lux",
+      "name": "Relaxaurus Lux",
+      "combiRank": 85,
+      "types": [
+        "Dragon",
+        "Electric"
+      ],
+      "passives": [
+        "lord"
+      ],
+      "work": {
+        "generating": 3,
+        "transporting": 1
+      }
+    },
+    {
+      "id": "jetragon",
+      "name": "Jetragon",
+      "combiRank": 140,
+      "types": [
+        "Dragon"
+      ],
+      "passives": [
+        "legend"
+      ],
+      "work": {
+        "gathering": 3
+      }
+    }
+  ],
+  "combos": [
+    {
+      "a": "lamball",
+      "b": "chikipi",
+      "child": "cattiva",
+      "unique": false
+    },
+    {
+      "a": "foxparks",
+      "b": "pengullet",
+      "child": "surfent",
+      "unique": false
+    },
+    {
+      "a": "relaxaurus",
+      "b": "sparkit",
+      "child": "relaxaurus-lux",
+      "unique": true
+    }
+  ],
+  "passives": [
+    {
+      "id": "lucky",
+      "name": "Lucky",
+      "tier": "S",
+      "effect": "+15% attack and work speed.",
+      "inherit": true
+    },
+    {
+      "id": "lord",
+      "name": "Lord of the Underworld",
+      "tier": "S",
+      "effect": "+20% Dark damage.",
+      "inherit": false
+    },
+    {
+      "id": "kindling",
+      "name": "Kindling",
+      "tier": "B",
+      "effect": "Faster Kindling work.",
+      "inherit": true
+    },
+    {
+      "id": "hydro",
+      "name": "Hydro Power",
+      "tier": "A",
+      "effect": "+10% Water damage.",
+      "inherit": true
+    }
+  ]
+}

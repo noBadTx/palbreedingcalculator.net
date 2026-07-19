@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forward Breeding Calculator — Parents to Child | Palbreed.gg</title>
+  <meta name="description" content="Enter two Palworld parents and instantly see their child, CombiRank, and any unique combo overrides.">
+  <link rel="canonical" href="https://palbreedingcalculator.net/breeding-calculator">
+  <meta property="og:title" content="Forward Breeding Calculator — Parents to Child">
+  <meta property="og:description" content="Enter two Palworld parents and instantly see their child, CombiRank, and any unique combo overrides.">
+  <meta property="og:url" content="https://palbreedingcalculator.net/breeding-calculator">
+  <meta property="og:image" content="https://palbreedingcalculator.net/assets/og-image.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/styles.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Forward Palworld Breeding Calculator",
+    "description": "Enter two Palworld parents and instantly see their child, CombiRank, and any unique combo overrides.",
+    "url": "https://palbreedingcalculator.net/breeding-calculator",
+    "applicationCategory": "GameApplication",
+    "operatingSystem": "Any"
+  }
+  </script>
+</head>
+<body>
+  <header class="nav">
+    <div class="container flex items-center justify-between" style="height:64px;">
+      <a href="./" class="flex items-center gap-2" style="color:var(--text-primary); text-decoration:none;">
+        <svg width="32" height="32" aria-hidden="true">
+          <use href="../assets/icons.svg#icon-logo"/>
+        </svg>
+        <span style="font-size:1.25rem; font-weight:800;">PalBreed</span>
+      </a>
+      <nav class="desktop-nav" aria-label="Main">
+        <ul class="flex items-center gap-4" style="list-style:none;">
+          <li><a href="./breeding-calculator.html" class="btn btn-ghost" aria-current="page">Forward Calculator</a></li>
+          <li><a href="./reverse-breeding.html" class="btn btn-ghost">Reverse Calculator</a></li>
+          <li><a href="./best-combos.html" class="btn btn-ghost">Best Combos</a></li>
+          <li><a href="./passive-skills.html" class="btn btn-ghost">Passives</a></li>
+        </ul>
+      </nav>
+      <button class="btn btn-ghost mobile-menu-toggle" aria-label="Open menu" aria-expanded="false">
+        <svg width="24" height="24" aria-hidden="true">
+          <use href="../assets/icons.svg#icon-menu"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container" style="max-width:760px;">
+      <div class="mb-6">
+        <span class="badge badge-primary">Forward Calculator</span>
+      </div>
+      <h1 class="mb-4">Forward Breeding Calculator</h1>
+      <p style="color:var(--text-secondary); margin-bottom:var(--space-8);">Parent 1 + Parent 2 → Child. Select two parents and see their child, CombiRank, and any unique combo override.</p>
+
+      <!-- Empty State Tool -->
+      <div class="card" style="margin-bottom:var(--space-8);">
+        <div class="grid grid-2" style="gap:var(--space-5); margin-bottom:var(--space-6);">
+          <div>
+            <label class="label" for="parent-a">Parent 1</label>
+            <select id="parent-a" class="select">
+              <option value="" disabled selected>Choose a Pal...</option>
+              <option value="lamball">Lamball</option>
+              <option value="chikipi">Chikipi</option>
+              <option value="cattiva">Cattiva></option>
+              <option value="relaxaurus">Relaxaurus</option>
+              <option value="sparkit">Sparkit</option>
+            </select>
+          </div>
+          <div>
+            <label class="label" for="parent-b">Parent 2</label>
+            <select id="parent-b" class="select">
+              <option value="" disabled selected>Choose a Pal...</option>
+              <option value="lamball">Lamball</option>
+              <option value="chikipi">Chikipi</option>
+              <option value="cattiva">Cattiva></option>
+              <option value="relaxaurus">Relaxaurus</option>
+              <option value="sparkit">Sparkit</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-lg" style="width:100%;">Calculate Child</button>
+
+        <!-- Empty State Result -->
+        <div class="empty-state" style="margin-top:var(--space-8); padding:var(--space-8); border:2px dashed var(--border-default); border-radius:var(--radius-lg); text-align:center;">
+          <svg width="48" height="48" aria-hidden="true" style="margin:0 auto var(--space-4); color:var(--text-muted);">
+            <use href="../assets/icons.svg#icon-search"/>
+          </svg>
+          <p style="color:var(--text-muted); margin:0;">Select two parents to see their child.</p>
+        </div>
+      </div>
+
+      <!-- Filled State Result (hidden by default in production) -->
+      <div class="card" style="display:block; margin-bottom:var(--space-8);">
+        <div class="flex items-center justify-between mb-6" style="flex-wrap:wrap; gap:var(--space-3);">
+          <h2 style="font-size:var(--text-h2);">Result</h2>
+          <span class="badge badge-secondary">Unique Combo</span>
+        </div>
+
+        <div class="flex items-center gap-4" style="flex-wrap:wrap; margin-bottom:var(--space-6);">
+          <div class="pal-avatar" style="width:72px; height:72px; border-radius:var(--radius-lg); background:linear-gradient(135deg, #3B82F6 0%, #06B6D4 100%); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1.5rem; color:white;">R</div>
+          <div>
+            <div style="font-size:var(--text-h2); font-weight:var(--font-bold);">Relaxaurus Lux</div>
+            <div class="flex gap-2 mt-2" style="flex-wrap:wrap;">
+              <span class="badge badge-type" style="color:var(--type-water); background:rgba(59,130,246,0.15);">
+                <svg width="12" height="12" aria-hidden="true">
+                  <use href="../assets/icons.svg#icon-water"/>
+                </svg>
+                Water
+              </span>
+              <span class="badge badge-type" style="color:var(--type-electric); background:rgba(234,179,8,0.15);">
+                <svg width="12" height="12" aria-hidden="true">
+                  <use href="../assets/icons.svg#icon-electric"/>
+                </svg>
+                Electric
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-3" style="margin-bottom:var(--space-6);">
+          <div class="card" style="background:var(--bg-input); padding:var(--space-4);">
+            <div class="data-label">CombiRank</div>
+            <div class="data-value" style="color:var(--accent-primary);">1420</div>
+          </div>
+          <div class="card" style="background:var(--bg-input); padding:var(--space-4);">
+            <div class="data-label">Parents Required</div>
+            <div class="data-value" style="font-size:var(--text-body);">Relaxaurus + Sparkit</div>
+          </div>
+          <div class="card" style="background:var(--bg-input); padding:var(--space-4);">
+            <div class="data-label">Override</div>
+            <div class="data-value" style="font-size:var(--text-body); color:var(--accent-secondary);">Yes</div>
+          </div>
+        </div>
+
+        <div class="flex gap-3" style="flex-wrap:wrap;">
+          <button class="btn btn-primary">
+            <svg width="18" height="18" aria-hidden="true">
+              <use href="../assets/icons.svg#icon-share"/>
+            </svg>
+            Share This Result
+          </button>
+          <a href="./pal-detail.html?slug=relaxaurus-lux" class="btn btn-secondary">View Pal Details →</a>
+        </div>
+      </div>
+
+      <!-- Related Combos -->
+      <div class="card">
+        <h2 class="card-title">Related Combos</h2>
+        <div class="combo-list">
+          <a href="./combo-result.html?a=lamball&b=chikipi" class="flex items-center justify-between" style="padding:var(--space-3) 0; border-bottom:1px solid var(--border-subtle); color:var(--text-primary); text-decoration:none;">
+            <span>Lamball × Chikipi</span>
+            <span class="badge badge-type">→ Chikipi</span>
+          </a>
+          <a href="./combo-result.html?a=cattiva&b=lamball" class="flex items-center justify-between" style="padding:var(--space-3) 0; border-bottom:1px solid var(--border-subtle); color:var(--text-primary); text-decoration:none;">
+            <span>Cattiva × Lamball</span>
+            <span class="badge badge-type">→ Lamball</span>
+          </a>
+          <a href="./combo-result.html?a=relaxaurus&b=sparkit" class="flex items-center justify-between" style="padding:var(--space-3) 0; color:var(--text-primary); text-decoration:none;">
+            <span>Relaxaurus × Sparkit</span>
+            <span class="badge badge-primary">→ Relaxaurus Lux</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer style="background-color:var(--bg-page); border-top:1px solid var(--border-subtle); padding:var(--space-8) 0; margin-top:var(--space-16);">
+    <div class="container">
+      <div class="flex justify-between" style="flex-wrap:wrap; gap:var(--space-6);">
+        <div class="flex items-center gap-2">
+          <svg width="28" height="28" aria-hidden="true">
+            <use href="../assets/icons.svg#icon-logo"/>
+          </svg>
+          <span style="font-weight:700;">PalBreed</span>
+        </div>
+        <nav aria-label="Footer">
+          <ul class="flex items-center gap-4" style="list-style:none; flex-wrap:wrap;">
+            <li><a href="./about.html" style="color:var(--text-muted); font-size:var(--text-small);">About</a></li>
+            <li><a href="./privacy.html" style="color:var(--text-muted); font-size:var(--text-small);">Privacy</a></li>
+            <li><a href="./terms.html" style="color:var(--text-muted); font-size:var(--text-small);">Terms</a></li>
+            <li><a href="./sitemap.html" style="color:var(--text-muted); font-size:var(--text-small);">Sitemap</a></li>
+          </ul>
+        </nav>
+      </div>
+      <p style="color:var(--text-muted); font-size:var(--text-xs); margin-top:var(--space-6);">Palworld is a trademark of Pocketpair, Inc. This fan-made tool is not affiliated with or endorsed by Pocketpair.</p>
+    </div>
+  </footer>
+</body>
+</html>
