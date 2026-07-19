@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { getPals, getCombos, findPal, reverseCombos } from "@/lib/data";
+import { getPals, getCombos, findPal, reverseCombos, sortedPair } from "@/lib/data";
 import { PalAvatar } from "@/components/PalAvatar";
 import { TypeBadge } from "@/components/TypeBadge";
 
@@ -71,7 +71,7 @@ function ReverseCalculator() {
                       <td><Link href={`/pal/${r.parentBObj.id}/`}>{r.parentBObj.name}</Link></td>
                       <td>{r.override ? <span className="badge badge-primary">Unique</span> : "—"}</td>
                       <td>
-                        <Link href={`/combo/${r.parentA < r.parentB ? `${r.parentA}-${r.parentB}` : `${r.parentB}-${r.parentA}`}/`}>View →</Link>
+                        <Link href={`/combo/${sortedPair(r.parentA, r.parentB).join("-")}/`}>View →</Link>
                       </td>
                     </tr>
                   ))}

@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { getPals, getCombos, findPal, findCombo } from "@/lib/data";
+import { getPals, getCombos, findPal, findCombo, sortedPair } from "@/lib/data";
 import { PalAvatar } from "@/components/PalAvatar";
 import { TypeBadge } from "@/components/TypeBadge";
 
@@ -27,7 +27,7 @@ function ForwardCalculator() {
     return combo ? findPal(pals, combo.child) : null;
   }, [a, b, pals]);
 
-  const shareUrl = typeof window !== "undefined" && result ? `${window.location.origin}/combo/${a < b ? `${a}-${b}` : `${b}-${a}`}/` : "";
+  const shareUrl = typeof window !== "undefined" && result ? `${window.location.origin}/combo/${sortedPair(a, b).join("-")}/` : "";
 
   const copy = async () => {
     if (!shareUrl) return;
