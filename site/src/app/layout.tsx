@@ -10,18 +10,19 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const plausibleDomain = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN || "palbreedingcalculator.net";
-  const plausibleScript = process.env.NEXT_PUBLIC_PLAUSIBLE_SCRIPT || "/js/script.js";
-  const plausibleApi = process.env.NEXT_PUBLIC_PLAUSIBLE_API || "/api/event";
-
   return (
     <html lang="en">
       <head>
+        {/* Privacy-friendly analytics by Plausible */}
         <script
-          defer
-          data-domain={plausibleDomain}
-          data-api={plausibleApi}
-          src={plausibleScript}
+          async
+          src="https://plausible.shipsolo.io/js/pa-e6cjcAqkNnlMu5UWNNnOU.js"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init();",
+          }}
         />
       </head>
       <body>
